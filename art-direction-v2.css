@@ -1,0 +1,102 @@
+/* Art direction v2: crafted, immersive service portfolio. */
+:root { --ink:#302c26; --muted:#625e55; --paper:#eae2d6; --cream:#e4d7c5; --line:#c8bba9; --orange:#a9563f; --teal:#748b7b; --white:#f9f1e6; }
+body { background:var(--paper); }
+.site-header { background:var(--paper); border-color:#55453230; }
+.brand,.nav { font-weight:500; }
+.brand-symbol { border:1px solid currentColor; transform:none; border-radius:50%; }
+.nav-cta,.button-dark { background:var(--ink); }
+.nav-cta:hover,.button-dark:hover { background:#8e5847; }
+h1,h2,h3 { font-weight:500; letter-spacing:-.067em; }
+h1 em,h2 em { font-family:Georgia,serif; font-weight:400; font-style:italic; color:var(--orange); }
+.marquee { background:#baaa91; color:var(--ink); }
+.marquee b { color:#925040; }
+.home-path { background:transparent; border:0; border-top:1px solid #a89d8e; box-shadow:none; }
+.home-path:hover { background:#e4d8c6; transform:none; }
+.home-path-grid { gap:0; border-bottom:1px solid #a89d8e; }
+.home-feature { background:#d6c6b0; }
+.home-contact { background:#b9795e; color:#fff8ec; }
+.home-contact h2 em { color:#f8d8aa; }
+.service-card { background:#f4eee5; border-color:#c6b9a6; box-shadow:none; }
+.service-card:hover { box-shadow:0 15px 30px #5949381b; }
+.work { background:#ded2c1; }
+.project-image { background:#c6b6a1; }
+.process,.footer { background:#2d312d; }
+.faq { background:#e7dccb; }
+.inquiry { background:#c9d0c3; }
+.page-home .site-header { background:transparent; border-color:#584c4133; }
+.page-home .hero { width:100%; height:max(760px,100svh); min-height:0; display:block; padding:0; overflow:hidden; background:#d8c5ad url('assets/hero-atelier-v2.png') center center / cover no-repeat; }
+.page-home .hero::after { content:''; position:absolute; inset:0; z-index:1; background:linear-gradient(90deg,#e8d9c3cc 0%,#e8d9c39c 29%,transparent 58%),linear-gradient(0deg,#422e1b38,transparent 28%); pointer-events:none; }
+.atelier-canvas,.atelier-vignette,.page-home .hero-scene { display:none !important; }
+.page-home .hero-copy { position:absolute; left:clamp(28px,5vw,90px); top:auto; bottom:10%; width:min(570px,45vw); max-width:none; z-index:3; padding:0; }
+.page-home .hero h1 { font-size:clamp(4rem,6.5vw,7.2rem); line-height:.95; font-weight:500; letter-spacing:-.074em; max-width:660px; margin:20px 0 20px; }
+.page-home .hero h1 em { font-family:Georgia,serif; font-weight:400; letter-spacing:-.09em; }
+.page-home .hero-lede { font-size:1.05rem; line-height:1.55; color:#413c34; max-width:460px; }
+.page-home .hero-actions { margin-top:27px; }
+.page-home .hero-proof { margin-top:27px; color:#443f37; }
+.page-home .hero-bottom { z-index:4; color:#fff9ee; text-shadow:0 1px 4px #23190f9c; bottom:22px; }
+.page-home .eyebrow { font-size:.7rem; font-weight:600; letter-spacing:.18em; }
+.page-home .button-dark { background:#302d26; }
+.home-path h3 { font-size:clamp(2rem,2.7vw,3.2rem); }
+.interior-intro { background:#ded1be; }
+.interior-intro h1 { font-size:clamp(4rem,7vw,7.6rem); line-height:.96; }
+.interior-intro:before { background:#bb9776; opacity:.15; filter:blur(2px); }
+.interior-intro h1 em { color:#995944; }
+.inquiry-form { background:#f5eee4; box-shadow:8px 8px 0 #9fae9f; }
+/* Each page gets its own visual rhythm while sharing the atelier palette. */
+.interior-intro { min-height:620px; display:flex; align-items:center; padding:105px 0; }
+.interior-intro::before { display:none; }
+.interior-intro .shell { z-index:2; width:min(100% - 64px,1280px); }
+.interior-intro h1 { max-width:720px; }
+.interior-intro>div>p:last-of-type { max-width:520px; color:#4c473e; }
+.interior-rule { background:#5d4e3a55; }
+.page-work .interior-intro { background:#d0b89c; }
+.page-work .interior-intro::after { content:''; position:absolute; right:0; top:0; width:49%; height:100%; background:linear-gradient(90deg,#d0b89c 0%,#d0b89c00 32%),url('assets/hero-atelier-v2.png') 78% center / cover; opacity:.95; }
+.page-work .interior-intro h1 { max-width:730px; }
+.page-work .interior-intro .shell { text-shadow:0 1px 18px #d0b89c55; }
+.page-services .interior-intro { background:#c5d0c3; }
+.page-services .interior-intro h1 { max-width:555px; font-size:clamp(4rem,5.6vw,6.1rem); }
+.page-services .interior-intro::after { content:''; position:absolute; right:5%; top:7%; width:37%; height:86%; background:url('assets/hero-atelier-v2.png') 75% center / cover; border-radius:240px 240px 12px 12px; box-shadow:24px 24px 0 #8a9a86; }
+.page-about .interior-intro { background:#cbb9a3; }
+.page-about .interior-intro::after { content:''; position:absolute; right:7%; bottom:0; width:31%; height:82%; background:url('assets/profile.webp') center 22% / cover; border-radius:220px 220px 0 0; filter:saturate(.75); }
+.page-contact .interior-intro { background:#303a33; color:#f8f1e5; }
+.page-contact .interior-intro h1 em { color:#dab393; }
+.page-contact .interior-intro>div>p:last-of-type,.page-contact .interior-index { color:#e4d9c8; }
+.page-contact .interior-rule { background:#ffffff55; }
+.page-contact .interior-intro::after { content:''; position:absolute; right:8%; top:19%; width:min(28vw,340px); height:min(28vw,340px); border:2px solid #e2ad8166; border-radius:50%; box-shadow:0 0 0 45px #e2ad8114,0 0 0 95px #e2ad810b; pointer-events:none; }
+@media(max-width:1000px) {
+  .page-home .hero-copy { width:min(600px,53vw); }
+  .page-home .hero { background-position:59% center; }
+}
+@media(max-width:760px) {
+  .interior-intro { min-height:0; padding:85px 0 310px; align-items:flex-start; }
+  .interior-intro h1 { max-width:100%; }
+  .page-work .interior-intro::after,.page-services .interior-intro::after,.page-about .interior-intro::after { top:auto; bottom:0; right:0; width:100%; height:275px; border-radius:0; box-shadow:none; }
+  .page-work .interior-intro::after { background:linear-gradient(180deg,#d0b89c 0%,#d0b89c00 25%),url('assets/hero-atelier-v2.png') 78% center / cover; }
+  .page-services .interior-intro::after { background-position:65% 58%; }
+  .page-about .interior-intro::after { width:62%; right:0; height:275px; border-radius:160px 160px 0 0; }
+  .page-contact .interior-intro { padding-bottom:95px; }
+  .page-contact .interior-intro::after { opacity:.35; right:5%; top:32%; width:38vw; height:38vw; }
+  .page-home .site-header { background:#ebdfcce5; }
+  .page-home .hero { height:auto; min-height:930px; background-position:63% bottom; }
+  .page-home .hero::after { background:linear-gradient(180deg,#ecdfccf9 0%,#ecdfcce5 44%,#ecdfcc4d 73%,transparent 95%); }
+  .page-home .hero-copy { top:122px; bottom:auto; left:20px; right:20px; width:auto; max-width:560px; }
+  .page-home .hero h1 { font-size:clamp(3.8rem,10.4vw,5.5rem); }
+  .page-home .hero-proof { margin-top:30px; }
+  .page-home .hero-bottom { left:20px; right:20px; }
+  .page-home .nav { background:#eadcc8; }
+}
+@media(max-width:560px) {
+  .interior-intro .shell { width:min(100% - 32px,1280px); }
+  .interior-intro { padding:65px 0 275px; }
+  .interior-intro .eyebrow { margin-bottom:26px; }
+  .interior-intro h1 { font-size:clamp(3.5rem,11vw,5rem); }
+  .interior-intro .interior-rule { margin-top:35px; }
+  .page-work .interior-intro::after,.page-services .interior-intro::after,.page-about .interior-intro::after { height:245px; }
+  .page-contact .interior-intro { padding-bottom:75px; }
+  .page-home .hero { min-height:900px; background-position:66% bottom; }
+  .page-home .hero-copy { top:105px; left:16px; right:16px; }
+  .page-home .hero h1 { font-size:clamp(3.25rem,12vw,4.55rem); }
+  .page-home .hero-lede { font-size:.97rem; max-width:360px; }
+  .page-home .hero-actions { gap:15px; }
+  .page-home .hero-bottom { left:16px; right:16px; }
+}

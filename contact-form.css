@@ -1,0 +1,14 @@
+.form-honeypot[hidden]{display:none!important}
+.form-footnote{min-height:46px;transition:color .2s}
+.form-footnote.is-success{color:#285d43;font-weight:700}
+.form-footnote.is-error{color:#9a3d35;font-weight:700}
+.inquiry-form button[disabled]{opacity:.6;cursor:wait;transform:none}
+.thank-you-main{min-height:70svh;display:grid;place-items:center;background:#cbd5c7;position:relative;overflow:hidden}
+.thank-you-main::after{content:'';position:absolute;width:min(50vw,540px);aspect-ratio:1;border:2px solid #a96d5090;border-radius:50%;right:-8%;top:14%;box-shadow:0 0 0 65px #a96d5018,0 0 0 135px #a96d500d}
+.thank-you-card{position:relative;z-index:1;width:min(100% - 64px,1000px);padding:95px 0}
+.thank-you-card .eyebrow{margin-bottom:42px}
+.thank-you-card h1{max-width:850px;font:500 clamp(4rem,8vw,8rem)/.94 'Space Grotesk',sans-serif;letter-spacing:-.075em;margin:0 0 27px}
+.thank-you-card h1 em{font:400 .96em Georgia,serif;color:#a65f47}
+.thank-you-card p:not(.eyebrow){max-width:570px;font:400 18px/1.65 'DM Sans',sans-serif;color:#465048;margin-bottom:34px}
+.thank-you-card .button{margin-right:12px}
+@media(max-width:560px){.thank-you-card{width:min(100% - 32px,1000px);padding:75px 0}.thank-you-card h1{font-size:clamp(3.5rem,11vw,5rem)}.thank-you-card p:not(.eyebrow){font-size:15px}.thank-you-card .button{margin-bottom:12px}}
