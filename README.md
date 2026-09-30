@@ -4,12 +4,12 @@ Static multipage portfolio for Shadab Ali, freelance Shopify & WordPress develop
 
 ## Pages
 
-- `index.html` — poster hero (role, name, featured project, two calls to action), 01 Intro statement, 02 Selected work (four large project displays, each in its own colour mood) and the Diviniti numbers, 03 Expertise (what I build and technology), 04 About (portrait, why work with me, the five-step process), 05 Contact (Let’s talk) and the footer
-- `work.html` — the four projects and the Diviniti numbers
-- `case-diviniti.html`, `case-portrait-on-gold.html`, `case-majestic-india.html`, `case-uncostly.html` — project pages: number, name, introduction, live site, cover, Client / Platform / Industry / Role, /Details (challenge, solution, implementation, results), /Image gallery and next project. On the homepage and projects page, project links open the same page as a full-screen overlay; the address changes so it can be shared, and Back or Escape closes it.
+- `index.html` — hero (name, promise and a layered collage of the four real projects that drifts with the mouse), a short introduction, Selected work (four projects, each in its own world: Diviniti dark and gold, Portrait on Gold warm with an overlapping phone, The Majestic India ivory and maroon with a vertical title, Uncostly bright with a product surface), the Diviniti proof strip, What I build (rows that show a project image beside the pointer), About (cutout portrait over the SA monogram), the five-step process, the dark “Let’s make something good.” call to action and the footer
+- `work.html` — the four projects and the proof strip
+- `case-diviniti.html`, `case-portrait-on-gold.html`, `case-majestic-india.html`, `case-uncostly.html` — project pages in the project’s own colours: name, introduction, live site, large cover, Client / Platform / Industry / Role, details (challenge, solution, implementation, results), image gallery and next project. On the homepage and projects page, project links open the same page as a full-screen overlay; the address changes so it can be shared, and Back or Escape closes it.
 - `services.html` — the four services with their scope, and the process
-- `about.html` — introduction, why work with me and the process
-- `contact.html` — direct contact (email, WhatsApp, LinkedIn) and a “Send project details” button that opens an email with the brief headings ready to fill in. There is no form and nothing to configure: messages go straight to your inbox or WhatsApp.
+- `about.html` — portrait and introduction, why work with me and the process
+- `contact.html` — email, WhatsApp and LinkedIn, and a “Send project details” button that opens an email with the brief headings ready to fill in. There is no form and nothing to configure.
 - `404.html` — page-not-found page (Vercel serves it for missing URLs)
 
 ## Deploy on Vercel
@@ -18,9 +18,9 @@ Import the repository in Vercel with Framework Preset **Other**, Root Directory 
 
 ## How it is built
 
-- `tools/build_pages.py` writes every HTML page, `sitemap.xml` and `robots.txt` from one place: header, footer, final call to action, projects (role, stack, scope, case study text), services, capabilities, technology, process, page titles and descriptions, and structured data (WebSite, Person, ProfessionalService). Edit content there and run `python3 tools/build_pages.py` from the repository root (needs Python 3 and Pillow, which reads image sizes). Do not edit the generated HTML by hand; the next run overwrites it.
-- `site.css` — the design system: colour tokens (canvas `#f4f1ea`, ink `#111111`, secondary `#6f6c65`, rules `#d8d3c9`), the four project moods (`theme-dark`, `theme-warm`, `theme-ivory`, `theme-white`) and the dark footer, a 12 / 8 / 4 column grid (desktop / tablet / mobile), the type scale, every section, motion and the reduced-motion rules. Hover effects only apply on devices with a real mouse, so taps on phones never leave a stuck state.
-- `site.js` — slim sticky header, mobile menu, scroll reveals (word-by-word headings and image clip reveals), the section index along the left edge on wide screens, the “View project” cursor (mouse only), the project overlay, and the contact email pre-fill when a visitor arrives from a service’s “Start a project” link.
+- `tools/build_pages.py` writes every HTML page, `sitemap.xml` and `robots.txt` from one place: header, footer, projects (role, stack, scope, case study text), services, the “What I build” rows, skills, process, page titles and descriptions, and structured data (WebSite, Person, ProfessionalService). Edit content there and run `python3 tools/build_pages.py` from the repository root (needs Python 3 and Pillow, which reads image sizes). Do not edit the generated HTML by hand; the next run overwrites it.
+- `site.css` — the design system: canvas `#f5f2ec`, text `#111111`, secondary `#6e6a63`, dark `#111111`; each project world (`world--diviniti`, `world--pog`, `world--majestic`, `world--uncostly`) takes its accent from the project itself. Inter Tight for display and body, DM Mono for small technical labels. A 12 / 8 / 4 column grid (desktop / tablet / mobile), every section, motion (including scroll-linked zoom and drift where the browser supports it) and the reduced-motion rules. Hover effects only apply on devices with a real mouse.
+- `site.js` — header, mobile menu, scroll reveals, the hero collage depth, the “View case study” cursor label, the service image previews, the process stages, the project overlay and the contact email pre-fill. No libraries.
 
 ## Content that comes from you
 
@@ -30,9 +30,9 @@ Testimonials: the homepage has a testimonial section that stays hidden while `TE
 
 ## Images and fonts
 
-Project images live in `assets/work/`, cropped from the full-length screenshots in the repository’s history (commit `279d757`). The large project images (`*-exhibit-*`, `*-phone-*`, `diviniti-poster-*`) and the portrait come in AVIF and WebP at several widths; browsers pick the smallest suitable file, and phones get the project’s mobile screenshot instead of a shrunken desktop one. Gallery images are WebP in two widths. If you replace an image, keep the same names and widths. `assets/grain.png` is the 5 KB paper texture.
+Project images live in `assets/work/`, cropped from the full-length screenshots in the repository’s history (commit `279d757`). The large project images (`*-exhibit-*`, `*-phone-*`, `diviniti-poster-*`, `majestic-tile-*`, `uncostly-banner-*`) and the portrait come in AVIF and WebP at several widths; browsers pick the smallest suitable file, and phones get the project’s mobile screenshot instead of a shrunken desktop one. Gallery images are WebP in two widths. If you replace an image, keep the same names and widths. `assets/grain.png` is the 5 KB paper texture.
 
-The font is Inter Tight (SIL Open Font License, see `assets/fonts`), self-hosted, so no requests go to Google Fonts.
+The fonts are Inter Tight and DM Mono (both SIL Open Font License, see `assets/fonts`), self-hosted, so no requests go to Google Fonts.
 
 ## Local preview
 

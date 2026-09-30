@@ -1,21 +1,19 @@
 /* Shadab Ali — site interactions (one deferred script for every page).
-   Header · mobile menu · reveals · section index · cursor · project overlay · contact email */
+   Header · mobile menu · reveals · hero depth · cursor label · service previews · process · project overlay · contact email */
 (() => {
   window.__site = 1;
   const root = document.documentElement;
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
   const motionOK = () => !reduceMotion.matches;
+  const lerp = (a, b, t) => a + (b - a) * t;
 
   document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
 
-  /* ---------- Header: stays put and gets slimmer once the page scrolls ---------- */
+  /* ---------- Header: transparent at the top, frosted once the page scrolls ---------- */
   const header = document.querySelector('[data-header]');
   let ticking = false;
-  const onScroll = () => {
-    ticking = false;
-    header.classList.toggle('is-scrolled', scrollY > 24);
-  };
+  const onScroll = () => { ticking = false; header.classList.toggle('is-scrolled', scrollY > 24); };
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
   onScroll();
 
@@ -36,7 +34,7 @@
   });
   matchMedia('(min-width: 768px)').addEventListener('change', event => { if (event.matches) setMenu(false); });
 
-  /* ---------- Reveals: fade, image clip and word-by-word text ---------- */
+  /* ---------- Reveals: fade, image clip and word-by-word headings ---------- */
   const splitWords = element => {
     if (element.dataset.split) return;
     element.dataset.split = 'done';
@@ -84,44 +82,38 @@
   reveal(document);
   reduceMotion.addEventListener?.('change', () => document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-in')));
 
-  /* ---------- Section index: "02 / Selected work" along the left edge (wide screens) ---------- */
-  const rail = document.querySelector('[data-index-rail]');
-  const indexed = [...document.querySelectorAll('[data-index]')];
-  if (rail && indexed.length && 'IntersectionObserver' in window) {
-    const text = rail.querySelector('.index-rail-text');
-    const visible = new Map();
-    const hero = document.querySelector('.hero');
-    const update = () => {
-      let current = null;
-      indexed.forEach(section => { if (visible.get(section)) current = section; });
-      const heroInView = hero && hero.getBoundingClientRect().bottom > innerHeight * 0.5;
-      const label = heroInView ? 'Scroll' : current?.dataset.index;
-      if (label) { text.textContent = label; rail.classList.add('is-visible'); }
-      else rail.classList.remove('is-visible');
+  /* ---------- Hero collage: each layer drifts a few pixels with the pointer ---------- */
+  const collage = document.querySelector('[data-collage]');
+  if (collage && finePointer.matches && motionOK()) {
+    let mx = 0, my = 0, tx = 0, ty = 0, frame = 0;
+    const step = () => {
+      mx = lerp(mx, tx, 0.08);
+      my = lerp(my, ty, 0.08);
+      collage.style.setProperty('--mx', mx.toFixed(3));
+      collage.style.setProperty('--my', my.toFixed(3));
+      frame = Math.abs(tx - mx) + Math.abs(ty - my) > 0.002 ? requestAnimationFrame(step) : 0;
     };
-    // A section counts as current while it crosses the middle of the screen.
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => visible.set(entry.target, entry.isIntersecting));
-      update();
-    }, { rootMargin: '-50% 0px -50% 0px' });
-    indexed.forEach(section => observer.observe(section));
-    addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
-    update();
+    document.addEventListener('pointermove', event => {
+      if (event.pointerType !== 'mouse' || scrollY > innerHeight) return;
+      tx = -((event.clientX / innerWidth) - 0.5) * 2;
+      ty = -((event.clientY / innerHeight) - 0.5) * 2;
+      if (!frame) frame = requestAnimationFrame(step);
+    }, { passive: true });
   }
 
-  /* ---------- "View project" cursor over project images (mouse only) ---------- */
+  /* ---------- "View case study" cursor label over project images (mouse only) ---------- */
   if (finePointer.matches && motionOK()) {
     const cursor = document.createElement('div');
     cursor.className = 'cursor';
     cursor.setAttribute('aria-hidden', 'true');
-    cursor.innerHTML = '<span>View</span><span>Project ↗</span>';
+    cursor.textContent = 'View case study ↗';
     document.body.append(cursor);
     let x = -300, y = -300, scale = 0, targetX = x, targetY = y, targetScale = 0, running = false;
     const loop = () => {
-      x += (targetX - x) * 0.24;
-      y += (targetY - y) * 0.24;
-      scale += (targetScale - scale) * 0.22;
-      cursor.style.transform = `translate3d(${(x + 18).toFixed(1)}px, ${(y + 18).toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
+      x = lerp(x, targetX, 0.25);
+      y = lerp(y, targetY, 0.25);
+      scale = lerp(scale, targetScale, 0.22);
+      cursor.style.transform = `translate3d(${(x + 16).toFixed(1)}px, ${(y + 16).toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
       if (Math.abs(targetX - x) + Math.abs(targetY - y) + Math.abs(targetScale - scale) > 0.05) requestAnimationFrame(loop);
       else running = false;
     };
@@ -136,6 +128,44 @@
     }, { passive: true });
     document.documentElement.addEventListener('pointerleave', () => { targetScale = 0; kick(); });
   }
+
+  /* ---------- What I build: a project image follows the pointer over each row ---------- */
+  const svcList = document.querySelector('[data-svc-list]');
+  const preview = document.querySelector('[data-svc-preview]');
+  if (svcList && preview && finePointer.matches && motionOK()) {
+    const img = preview.querySelector('img');
+    preview.style.display = 'block';
+    let x = 0, y = 0, tx = 0, ty = 0, running = false, current = '';
+    const loop = () => {
+      x = lerp(x, tx, 0.18);
+      y = lerp(y, ty, 0.18);
+      preview.style.transform = `translate3d(${(x + 28).toFixed(1)}px, ${(y - preview.offsetHeight / 2).toFixed(1)}px, 0)`;
+      if (preview.classList.contains('is-visible') || Math.abs(tx - x) + Math.abs(ty - y) > 0.5) requestAnimationFrame(loop);
+      else running = false;
+    };
+    svcList.addEventListener('pointermove', event => {
+      const row = event.target.closest('[data-preview]');
+      if (!row) return;
+      tx = event.clientX;
+      ty = event.clientY;
+      if (!preview.classList.contains('is-visible')) { x = tx; y = ty; }
+      if (row.dataset.preview !== current) { current = row.dataset.preview; img.src = current; }
+      preview.classList.add('is-visible');
+      if (!running) { running = true; requestAnimationFrame(loop); }
+    });
+    svcList.addEventListener('pointerleave', () => preview.classList.remove('is-visible'));
+    addEventListener('scroll', () => preview.classList.remove('is-visible'), { passive: true });
+  }
+
+  /* ---------- Process: the stage under the pointer (or focus) is shown ---------- */
+  document.querySelectorAll('[data-flow]').forEach(flow => {
+    const steps = [...flow.querySelectorAll('.flow-step')];
+    const activate = index => {
+      steps.forEach((step, i) => step.classList.toggle('is-active', i === index));
+      flow.style.setProperty('--progress', `${(index / steps.length) * 100}%`);
+    };
+    steps.forEach((step, i) => step.addEventListener('pointerenter', () => activate(i)));
+  });
 
   /* ---------- Project overlay ----------
      Project links point at real project pages. With JS, the page's project
@@ -164,7 +194,7 @@
     };
     const status = text => {
       const note = document.createElement('p');
-      note.className = 'dialog-status meta';
+      note.className = 'dialog-status label';
       note.setAttribute('role', 'status');
       note.textContent = text;
       dialog.replaceChildren(note);
@@ -190,7 +220,7 @@
     };
     const open = async (href, { from = null, mode = 'push' } = {}) => {
       const url = new URL(href, location.href);
-      if (from) returnFocus = from.closest('.exhibit')?.querySelector('[data-case-link]') || from;
+      if (from) returnFocus = from.closest('.world')?.querySelector('[data-case-link]') || (from.matches('[tabindex="-1"]') ? null : from);
       if (!dialog.open) {
         status('Loading project…');
         dialog.classList.remove('is-closing');
@@ -218,7 +248,7 @@
       closing = true;
       if (!motionOK()) { finishClose(); return; }
       dialog.classList.add('is-closing');
-      setTimeout(finishClose, 430);
+      setTimeout(finishClose, 380);
     };
     const requestClose = () => {
       if (pushed && history.state?.project) history.back(); // popstate closes the dialog
