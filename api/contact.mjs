@@ -4,8 +4,21 @@ const SERVICES = new Set([
   'WordPress website',
   'WooCommerce store',
   'Custom website or feature',
-  'Improve an existing site',
+  'Website redesign or improvements',
   'Not sure yet',
+]);
+const BUDGETS = new Set([
+  'Under ₹25,000',
+  '₹25,000–₹50,000',
+  '₹50,000–₹1,00,000',
+  '₹1,00,000+',
+  'Not sure yet',
+]);
+const TIMELINES = new Set([
+  'ASAP',
+  'Within 2–4 weeks',
+  '1–2 months',
+  'Flexible',
 ]);
 
 function result(message, status) {
@@ -48,9 +61,13 @@ export async function POST(request) {
   const service = field(form, 'service', 100);
   const website = field(form, 'website', 250);
   const details = field(form, 'details', 3000);
+  const budget = field(form, 'budget', 60);
+  const timeline = field(form, 'timeline', 60);
   const validEmail = email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const validWebsite = !website || /^https?:\/\/[^\s.]+\.[^\s]+$/i.test(website);
-  if (!name || !validEmail || !SERVICES.has(service) || !validWebsite || !details) {
+  const validBudget = !budget || BUDGETS.has(budget);
+  const validTimeline = !timeline || TIMELINES.has(timeline);
+  if (!name || !validEmail || !SERVICES.has(service) || !validWebsite || !details || !validBudget || !validTimeline) {
     return result('Please complete the required fields with valid details.', 400);
   }
 
@@ -67,6 +84,8 @@ export async function POST(request) {
     `Email: ${email}`,
     `Service: ${service}`,
     `Website: ${website || 'Not provided'}`,
+    `Estimated budget: ${budget || 'Not specified'}`,
+    `Desired timeline: ${timeline || 'Not specified'}`,
     '',
     'Project details:',
     details,

@@ -4,12 +4,12 @@ Standalone multipage website for prospective website clients. The HTML, CSS, Jav
 
 ## Pages
 
-- `index.html` — introduction, image slider, selected projects
-- `services.html` — services and FAQ
-- `work.html` — project gallery
+- `index.html` — hero, expertise, selected clients, project slider, services, why work with me, testimonials (hidden until filled), process, technology, about and closing call to action
+- `services.html` — the four services with their scope, and the FAQ
+- `work.html` — project slider and a breakdown of each project (platform, problem, role, what I did, result, services)
 - `case-diviniti.html` and `case-portrait-on-gold.html` — detailed case studies
-- `about.html` — background and process
-- `contact.html` — project request form and direct contact options
+- `about.html` — background, working directly together, technology and process
+- `contact.html` — project request form (including budget and timeline) and direct contact options
 - `thanks.html` — thank-you page shown after the contact form sends
 - `404.html` — page-not-found page (Vercel serves it for missing URLs)
 
@@ -23,13 +23,31 @@ Standalone multipage website for prospective website clients. The HTML, CSS, Jav
 
 Vercel's `/api/contact` function validates required fields, checks the hidden spam field, limits request size, and sends a plain-text inquiry email through Resend. The sender's address is set as the reply-to address. Local static previews prepare an email in the visitor's mail app because `python -m http.server` does not run Vercel Functions.
 
+## How the styles and scripts fit together
+
+Stylesheets load in this order, each refining the one before: `styles.css` (base layout, plus the self-hosted `@font-face` rules), `art-direction-v2.css` (current palette and page art direction), `motion.css`, `showcase.css`, the page-specific `case-study.css` or `contact-form.css`, and finally `components.css` (the conversion sections, accessible accent colours and mobile refinements).
+
+- `script.js` — mobile menu, contact form, service pre-selection from `?service=`, testimonials preview.
+- `motion.js` — hero image slider, reveal-on-scroll, scroll progress and back-to-top.
+- `showcase.js` — project slider (arrows, thumbnails, swipe/drag) and the desktop cursor ring.
+
+The header, navigation and footer are repeated in every HTML page. If you change one, change them all.
+
+## Testimonials
+
+The homepage has a testimonials section ready for 2–3 quotes. It ships **hidden** so placeholder text never reaches clients. Open `/index.html?preview` to see the layout with its placeholders. When you have real testimonials, follow the comment above the section in `index.html`: replace the text in a card, delete `data-placeholder` from it, delete unused cards, and remove `hidden` from the `<section>` tag.
+
+## Images
+
+Fonts live in `assets/fonts` (DM Sans and Space Grotesk, SIL Open Font License). Project screenshots come in several sizes: `name-desktop.webp` (full), `name-desktop-960.webp`, `name-mobile.webp`, `name-mobile-400.webp` and `name-thumb.webp` (128×106). If you replace a screenshot, replace every size of it, keeping the top of the page in frame, since each frame shows only the top of the screenshot. Images are cached by browsers for a day (`vercel.json`), so a replaced image can take up to a day to show for returning visitors.
+
 ## Local preview
 
 From this folder, run `python -m http.server 4173`, then open `http://localhost:4173/`.
 
 ## Before sharing
 
-Check the public email address, WhatsApp number, portrait, project descriptions, external project links, and permission to display screenshots. The case studies describe what was built and leave out performance or order-reduction figures; add those back only with numbers you can stand behind.
+Check the public email address, WhatsApp number, portrait, project descriptions, external project links, and permission to display screenshots. The only figure the site quotes is Diviniti's 40% Largest Contentful Paint improvement, labelled as reported. Every other project result describes what was built. Add numbers only when you can stand behind them.
 
 ## Site address
 

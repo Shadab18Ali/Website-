@@ -26,7 +26,7 @@
   updateScroll();
 
   if (!reduced.matches && 'IntersectionObserver' in window) {
-    const revealTargets = [...document.querySelectorAll('main > section:not(.hero):not(.motion-gallery), .motion-card, .service-card, .project-card, .project, .case-panel')];
+    const revealTargets = [...document.querySelectorAll('main > section:not(.hero), .service-card, .project')];
     const revealObserver = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -53,12 +53,14 @@
     let pointerStart = null;
     let paused = false;
     let visible = true;
+    // Only the first image is in the markup's src; the rest load after the page (or when shown first).
+    const hydrate = img => { if (img.dataset.src && !img.getAttribute('src')) img.src = img.dataset.src; };
     const setSlide = (target) => {
       index = (target + images.length) % images.length;
       images.forEach((img, position) => {
         img.classList.toggle('is-active', position === index);
         img.setAttribute('aria-hidden', String(position !== index));
-        if (position === index) img.loading = 'eager';
+        if (position === index) hydrate(img);
       });
       count.textContent = `${String(index + 1).padStart(2, '0')} / ${String(images.length).padStart(2, '0')}`;
       caption.textContent = images[index].dataset.caption || '';
@@ -116,52 +118,16 @@
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(entries => { visible = entries[0]?.isIntersecting || false; start(); }, { threshold: .12 }).observe(hero);
     }
+    if (document.readyState === 'complete') images.forEach(hydrate);
+    else addEventListener('load', () => images.forEach(hydrate), { once: true });
     document.addEventListener('visibilitychange', start);
     reduced.addEventListener?.('change', start);
     setSlide(0);
     start();
   }
 
-  const rail = document.querySelector('.motion-gallery-rail');
-  if (rail) {
-    const gallery = rail.closest('.motion-gallery');
-    const step = () => rail.querySelector('.motion-card')?.getBoundingClientRect().width + 22 || 400;
-    gallery.querySelector('[data-gallery-prev]').addEventListener('click', () => rail.scrollBy({ left: -step(), behavior: reduced.matches ? 'instant' : 'smooth' }));
-    gallery.querySelector('[data-gallery-next]').addEventListener('click', () => rail.scrollBy({ left: step(), behavior: reduced.matches ? 'instant' : 'smooth' }));
-    let drag = null;
-    let justDragged = false;
-    if (finePointer.matches) {
-      const cursor = document.createElement('div');
-      cursor.className = 'motion-cursor';
-      cursor.textContent = 'DRAG ↔';
-      cursor.setAttribute('aria-hidden', 'true');
-      document.body.append(cursor);
-      rail.addEventListener('pointerenter', () => cursor.classList.add('is-visible'));
-      rail.addEventListener('pointerleave', () => { cursor.classList.remove('is-visible'); drag = null; rail.classList.remove('is-dragging'); });
-      rail.addEventListener('pointermove', event => {
-        cursor.style.left = `${event.clientX}px`;
-        cursor.style.top = `${event.clientY}px`;
-        if (!drag) return;
-        const distance = event.clientX - drag.x;
-        if (Math.abs(distance) > 5) { justDragged = true; rail.classList.add('is-dragging'); }
-        rail.scrollLeft = drag.scroll - distance;
-      });
-      rail.addEventListener('pointerdown', event => {
-        if (event.button !== 0) return;
-        drag = { x: event.clientX, scroll: rail.scrollLeft };
-        justDragged = false;
-      });
-      const endDrag = () => { drag = null; rail.classList.remove('is-dragging'); };
-      rail.addEventListener('pointerup', endDrag);
-      rail.addEventListener('pointercancel', endDrag);
-      rail.addEventListener('click', event => {
-        if (justDragged) { event.preventDefault(); event.stopPropagation(); justDragged = false; }
-      }, true);
-    }
-  }
-
   if (finePointer.matches && !reduced.matches) {
-    document.querySelectorAll('.button, .nav-cta, .motion-gallery-toolbar button').forEach(element => {
+    document.querySelectorAll('.button, .nav-cta').forEach(element => {
       element.addEventListener('pointermove', event => {
         const rect = element.getBoundingClientRect();
         const x = (event.clientX - rect.left - rect.width / 2) * .09;
