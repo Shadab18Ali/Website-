@@ -10,7 +10,8 @@ Standalone multipage website for prospective website clients. The HTML, CSS, Jav
 - `case-diviniti.html` and `case-portrait-on-gold.html` — detailed case studies
 - `about.html` — background and process
 - `contact.html` — project request form and direct contact options
-- `thanks.html` — thank-you page
+- `thanks.html` — thank-you page shown after the contact form sends
+- `404.html` — page-not-found page (Vercel serves it for missing URLs)
 
 ## Upload to GitHub and deploy on Vercel
 
@@ -28,4 +29,14 @@ From this folder, run `python -m http.server 4173`, then open `http://localhost:
 
 ## Before sharing
 
-Check the public email address, WhatsApp number, portrait, project descriptions, external project links, and permission to display screenshots. The Diviniti LCP figure in older site copy comes from the source portfolio and has not been independently verified. The detailed case studies focus on implementation rather than presenting unsupported results as proven outcomes.
+Check the public email address, WhatsApp number, portrait, project descriptions, external project links, and permission to display screenshots. The case studies describe what was built and leave out performance or order-reduction figures; add those back only with numbers you can stand behind.
+
+## Site address
+
+Canonical links, link-preview tags (`og:url`, `og:image`), `robots.txt`, and `sitemap.xml` use `https://website-swart-nu-54.vercel.app`. If you connect a custom domain, replace that address everywhere:
+
+```
+grep -rl 'website-swart-nu-54.vercel.app' . | xargs sed -i 's#https://website-swart-nu-54.vercel.app#https://your-domain.com#g'
+```
+
+WhatsApp and LinkedIn cache link previews, so a changed preview can take a while to appear. LinkedIn's Post Inspector refreshes it immediately.

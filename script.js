@@ -90,7 +90,7 @@ if (inquiryForm) {
       inquiryForm.reset();
       formStatus.textContent = 'Your request was sent. Thank you — I’ll reply by email.';
       formStatus.classList.add('is-success');
-      formStatus.focus();
+      window.location.href = 'thanks.html';
     } catch (error) {
       formStatus.textContent = 'The form could not send your request. Please use the direct email or WhatsApp link on this page.';
       formStatus.classList.add('is-error');
