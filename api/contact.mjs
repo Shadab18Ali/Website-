@@ -1,11 +1,11 @@
 const MAX_BODY_BYTES = 12000;
+// Must match the options on contact.html (see tools/build_pages.py).
 const SERVICES = new Set([
-  'Shopify store',
-  'WordPress website',
-  'WooCommerce store',
-  'Custom website or feature',
-  'Website redesign or improvements',
-  'Not sure yet',
+  'Shopify',
+  'WordPress / WooCommerce',
+  'Website Redesign',
+  'Custom Development',
+  'Other',
 ]);
 const BUDGETS = new Set([
   'Under ₹25,000',
@@ -16,7 +16,7 @@ const BUDGETS = new Set([
 ]);
 const TIMELINES = new Set([
   'ASAP',
-  'Within 2–4 weeks',
+  '2–4 weeks',
   '1–2 months',
   'Flexible',
 ]);
@@ -74,7 +74,7 @@ export async function POST(request) {
   const { RESEND_API_KEY, CONTACT_TO_EMAIL, CONTACT_FROM_EMAIL } = process.env;
   if (!RESEND_API_KEY || !CONTACT_TO_EMAIL || !CONTACT_FROM_EMAIL) {
     console.error('Contact form email settings are missing.');
-    return result('The form is temporarily unavailable. Please email me directly.', 503);
+    return result('The form could not send your request. Please email me directly.', 503);
   }
 
   const text = [
@@ -82,10 +82,10 @@ export async function POST(request) {
     '',
     `Name: ${name}`,
     `Email: ${email}`,
-    `Service: ${service}`,
+    `Project type: ${service}`,
     `Website: ${website || 'Not provided'}`,
-    `Estimated budget: ${budget || 'Not specified'}`,
-    `Desired timeline: ${timeline || 'Not specified'}`,
+    `Budget: ${budget || 'Not specified'}`,
+    `Timeline: ${timeline || 'Not specified'}`,
     '',
     'Project details:',
     details,

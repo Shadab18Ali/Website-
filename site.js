@@ -297,7 +297,7 @@
       if (localPreview) {
         const get = name => String(values.get(name) || '').trim();
         const subject = `Website inquiry — ${get('service')} — ${get('name')}`;
-        const body = `Hi Shadab,\n\nI'd like to discuss a website project.\n\nName: ${get('name')}\nEmail: ${get('email')}\nService: ${get('service')}\nCurrent website: ${get('website') || 'Not provided'}\nEstimated budget: ${get('budget') || 'Not specified'}\nDesired timeline: ${get('timeline') || 'Not specified'}\n\nProject details:\n${get('details')}\n\nThanks,\n${get('name')}`;
+        const body = `Hi Shadab,\n\nI'd like to discuss a website project.\n\nName: ${get('name')}\nEmail: ${get('email')}\nProject type: ${get('service')}\nCurrent website: ${get('website') || 'Not provided'}\nBudget: ${get('budget') || 'Not specified'}\nTimeline: ${get('timeline') || 'Not specified'}\n\nProject details:\n${get('details')}\n\nThanks,\n${get('name')}`;
         formStatus.textContent = 'Your email app should open now. Review the message and press Send there.';
         location.href = `mailto:shadab18ali@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         return;
