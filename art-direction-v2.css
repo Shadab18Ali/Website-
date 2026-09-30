@@ -24,9 +24,8 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; font-style:italic; col
 .faq { background:#e7dccb; }
 .inquiry { background:#c9d0c3; }
 .page-home .site-header { background:transparent; border-color:#584c4133; }
-.page-home .hero { width:100%; height:max(760px,100svh); min-height:0; display:block; padding:0; overflow:hidden; background:#d8c5ad url('assets/hero-atelier-v2.png') center center / cover no-repeat; }
+.page-home .hero { width:100%; height:max(760px,100svh); min-height:0; display:block; padding:0; overflow:hidden; background:#d8c5ad url('assets/hero-atelier-v2.webp') center center / cover no-repeat; }
 .page-home .hero::after { content:''; position:absolute; inset:0; z-index:1; background:linear-gradient(90deg,#e8d9c3cc 0%,#e8d9c39c 29%,transparent 58%),linear-gradient(0deg,#422e1b38,transparent 28%); pointer-events:none; }
-.atelier-canvas,.atelier-vignette,.page-home .hero-scene { display:none !important; }
 .page-home .hero-copy { position:absolute; left:clamp(28px,5vw,90px); top:auto; bottom:10%; width:min(570px,45vw); max-width:none; z-index:3; padding:0; }
 .page-home .hero h1 { font-size:clamp(4rem,6.5vw,7.2rem); line-height:.95; font-weight:500; letter-spacing:-.074em; max-width:660px; margin:20px 0 20px; }
 .page-home .hero h1 em { font-family:Georgia,serif; font-weight:400; letter-spacing:-.09em; }
@@ -50,12 +49,12 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; font-style:italic; col
 .interior-intro>div>p:last-of-type { max-width:520px; color:#4c473e; }
 .interior-rule { background:#5d4e3a55; }
 .page-work .interior-intro { background:#d0b89c; }
-.page-work .interior-intro::after { content:''; position:absolute; right:0; top:0; width:49%; height:100%; background:linear-gradient(90deg,#d0b89c 0%,#d0b89c00 32%),url('assets/hero-atelier-v2.png') 78% center / cover; opacity:.95; }
+.page-work .interior-intro::after { content:''; position:absolute; right:0; top:0; width:49%; height:100%; background:linear-gradient(90deg,#d0b89c 0%,#d0b89c00 32%),url('assets/hero-atelier-v2.webp') 78% center / cover; opacity:.95; }
 .page-work .interior-intro h1 { max-width:730px; }
 .page-work .interior-intro .shell { text-shadow:0 1px 18px #d0b89c55; }
 .page-services .interior-intro { background:#c5d0c3; }
 .page-services .interior-intro h1 { max-width:555px; font-size:clamp(4rem,5.6vw,6.1rem); }
-.page-services .interior-intro::after { content:''; position:absolute; right:5%; top:7%; width:37%; height:86%; background:url('assets/hero-atelier-v2.png') 75% center / cover; border-radius:240px 240px 12px 12px; box-shadow:24px 24px 0 #8a9a86; }
+.page-services .interior-intro::after { content:''; position:absolute; right:5%; top:7%; width:37%; height:86%; background:url('assets/hero-atelier-v2.webp') 75% center / cover; border-radius:240px 240px 12px 12px; box-shadow:24px 24px 0 #8a9a86; }
 .page-about .interior-intro { background:#cbb9a3; }
 .page-about .interior-intro::after { content:''; position:absolute; right:7%; bottom:0; width:31%; height:82%; background:url('assets/profile.webp') center 22% / cover; border-radius:220px 220px 0 0; filter:saturate(.75); }
 .page-contact .interior-intro { background:#303a33; color:#f8f1e5; }
@@ -71,7 +70,7 @@ h1 em,h2 em { font-family:Georgia,serif; font-weight:400; font-style:italic; col
   .interior-intro { min-height:0; padding:85px 0 310px; align-items:flex-start; }
   .interior-intro h1 { max-width:100%; }
   .page-work .interior-intro::after,.page-services .interior-intro::after,.page-about .interior-intro::after { top:auto; bottom:0; right:0; width:100%; height:275px; border-radius:0; box-shadow:none; }
-  .page-work .interior-intro::after { background:linear-gradient(180deg,#d0b89c 0%,#d0b89c00 25%),url('assets/hero-atelier-v2.png') 78% center / cover; }
+  .page-work .interior-intro::after { background:linear-gradient(180deg,#d0b89c 0%,#d0b89c00 25%),url('assets/hero-atelier-v2.webp') 78% center / cover; }
   .page-services .interior-intro::after { background-position:65% 58%; }
   .page-about .interior-intro::after { width:62%; right:0; height:275px; border-radius:160px 160px 0 0; }
   .page-contact .interior-intro { padding-bottom:95px; }

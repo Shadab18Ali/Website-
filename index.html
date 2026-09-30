@@ -3,102 +3,214 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#1c3034">
-  <meta name="description" content="Shadab Ali builds Shopify, WordPress, WooCommerce and custom websites. Explore the work and request a website.">
-  <title>Websites built around your business | Shadab Ali</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="theme-color" content="#302c26">
+  <meta name="description" content="Freelance web developer specialising in Shopify, WordPress, WooCommerce and custom websites. Explore selected projects and discuss your next website with Shadab Ali.">
+  <title>Shadab Ali | Freelance Shopify &amp; WordPress Developer</title>
+  <link rel="canonical" href="https://website-swart-nu-54.vercel.app/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Shadab Ali">
+  <meta property="og:title" content="Shadab Ali | Freelance Shopify &amp; WordPress Developer">
+  <meta property="og:description" content="Freelance web developer specialising in Shopify, WordPress, WooCommerce and custom websites. Explore selected projects and discuss your next website with Shadab Ali.">
+  <meta property="og:url" content="https://website-swart-nu-54.vercel.app/">
+  <meta property="og:image" content="https://website-swart-nu-54.vercel.app/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Shadab Ali, freelance Shopify, WordPress and WooCommerce developer">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="assets/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="art-direction-v2.css">
   <link rel="stylesheet" href="motion.css">
   <link rel="stylesheet" href="showcase.css">
+  <link rel="stylesheet" href="components.css">
   <script src="script.js" defer></script>
   <script src="motion.js" defer></script>
   <script src="showcase.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Shadab Ali",
+    "jobTitle": "Freelance Web Developer",
+    "description": "Freelance web developer specialising in Shopify, WordPress, WooCommerce and custom websites.",
+    "url": "https://website-swart-nu-54.vercel.app/",
+    "image": "https://website-swart-nu-54.vercel.app/assets/profile.webp",
+    "email": "mailto:shadab18ali@gmail.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Delhi", "addressCountry": "IN" },
+    "sameAs": ["https://linkedin.com/in/shadab-ali-7b0261238"],
+    "knowsAbout": ["Shopify", "Liquid", "WordPress", "WooCommerce", "Front-end development", "Web performance"]
+  }
+  </script>
 </head>
 <body class="page-home">
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header" id="top">
     <div class="shell header-inner">
-      <a class="brand" href="index.html" aria-label="Shadab Ali, back to top"><span class="brand-symbol" aria-hidden="true">S<span>.</span></span><span>shadab ali<span class="brand-dot">.</span></span></a>
+      <a class="brand" href="index.html" aria-label="Shadab Ali, home"><span class="brand-symbol" aria-hidden="true">S<span>.</span></span><span>shadab ali<span class="brand-dot">.</span></span></a>
       <button class="menu-toggle" type="button" aria-controls="primary-nav" aria-expanded="false" aria-label="Open menu"><span></span><span></span></button>
-      <nav class="nav" id="primary-nav" aria-label="Main navigation"><a href="index.html" aria-current="page">Home</a><a href="services.html">Services</a><a href="work.html">Selected work</a><a href="about.html">About & process</a><a class="nav-cta" href="contact.html">Request a website <span aria-hidden="true">↗</span></a></nav>
+      <nav class="nav" id="primary-nav" aria-label="Main navigation"><a href="work.html">Work</a><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a><a class="nav-cta" href="contact.html#inquiry">Start a Project <span aria-hidden="true">↗</span></a></nav>
     </div>
   </header>
 
   <main id="main">
     <section class="hero shell" aria-labelledby="hero-title" data-motion-slider>
       <div class="motion-hero-media" aria-hidden="true">
-        <img src="assets/hero-atelier-v2.png" alt="" data-caption="The digital atelier" decoding="async" loading="eager" fetchpriority="high" draggable="false" class="is-active">
-        <img src="assets/hero-commerce-v3.png" alt="" data-caption="Commerce, reimagined" decoding="async" loading="lazy" fetchpriority="low" draggable="false" class="">
-        <img src="assets/hero-garden-v3.png" alt="" data-caption="A storefront with room to grow" decoding="async" loading="lazy" fetchpriority="low" draggable="false" class="">
+        <img src="assets/hero-atelier-v2.webp" alt="" data-caption="The digital atelier" decoding="async" loading="eager" fetchpriority="high" draggable="false" class="is-active">
+        <img data-src="assets/hero-commerce-v3.webp" alt="" data-caption="Commerce, reimagined" decoding="async" draggable="false" class="">
+        <img data-src="assets/hero-garden-v3.webp" alt="" data-caption="A storefront with room to grow" decoding="async" draggable="false" class="">
       </div>
-      <canvas class="atelier-canvas" id="atelierCanvas" aria-hidden="true"></canvas>
-      <div class="atelier-vignette" aria-hidden="true"></div>
       <div class="hero-copy">
-        <p class="eyebrow"><span class="eyebrow-line"></span> Shadab Ali · Digital storefront studio</p>
-        <h1 id="hero-title">A place for your business to <em>grow.</em></h1>
-        <p class="hero-lede">I’m Shadab. I build Shopify stores, WordPress and WooCommerce sites, and custom web experiences that make it easier for people to understand, trust, and choose your business.</p>
-        <div class="hero-actions"><a class="button button-dark" href="contact.html#inquiry">Request a website <span aria-hidden="true">↗</span></a><a class="text-link" href="#selected-projects">Explore my work <span aria-hidden="true">↓</span></a></div>
-        <div class="hero-proof"><span class="proof-avatar"><img src="assets/profile.webp" alt="" width="40" height="40"></span><span>Built around your goals.<br><strong>Designed for the real world.</strong></span></div>
-      </div>
-      <div class="hero-scene" aria-label="Layered storefront preview shown when 3D graphics are unavailable">
-        <div class="scene-halo" aria-hidden="true"></div>
-        <div class="scene-orbit orbit-one" aria-hidden="true"></div><div class="scene-orbit orbit-two" aria-hidden="true"></div>
-        <div class="scene-stage" id="sceneStage">
-          <div class="scene-card scene-main">
-            <div class="mock-browser"><i></i><i></i><i></i><span>yourstore.com</span></div>
-            <div class="mock-content"><div class="mock-copy"><small>THE NEW COLLECTION</small><strong>Made to<br><em>stand out.</em></strong><span class="mock-button">Discover more ↗</span></div><div class="mock-product"><div class="product-disc"></div><div class="product-shadow"></div></div></div>
-            <div class="mock-footer"><span>New arrivals</span><span>Collections</span><span>About</span></div>
-          </div>
-          <div class="scene-card scene-side"><div class="side-icon">↗</div><span>01 / 03</span><strong>Every detail<br>has a job.</strong><div class="side-bars"><i></i><i></i><i></i></div></div>
-          <div class="scene-chip chip-top"><span class="chip-icon">✦</span><span>Built for your<br><strong>next chapter</strong></span></div>
-          <div class="scene-chip chip-bottom"><span class="chip-spark">✳</span> Thoughtful by design</div>
-        </div>
-        <p class="scene-caption">Move your cursor to explore <span aria-hidden="true">↗</span></p>
+        <p class="eyebrow"><span class="eyebrow-line"></span> Freelance Web Developer</p>
+        <h1 id="hero-title">Websites built to help your business sell, grow and <em>stand out.</em></h1>
+        <p class="hero-lede">I’m Shadab Ali, a freelance web developer specialising in Shopify, WordPress, WooCommerce and custom websites for businesses worldwide.</p>
+        <div class="hero-actions"><a class="button button-dark" href="contact.html#inquiry">Start a Project <span aria-hidden="true">↗</span></a><a class="text-link" href="#selected-projects">View My Work <span aria-hidden="true">↓</span></a></div>
+        <div class="hero-proof"><span class="proof-avatar"><img src="assets/profile-avatar.webp" alt="" width="40" height="40"></span><span>Based in Delhi, India.<br><strong>Working with clients worldwide.</strong></span></div>
       </div>
       <div class="motion-hero-caption" data-slide-caption aria-hidden="true">The digital atelier</div>
-      <div class="motion-hero-controls" role="group" aria-label="Hero image slider"><button type="button" data-slide-prev aria-label="Previous scene">←</button><span class="motion-hero-count" data-slide-count aria-live="polite">01 / 03</span><button type="button" data-slide-next aria-label="Next scene">→</button></div>
-      <div class="hero-bottom"><span>01 / THE DIGITAL ATELIER</span><span>Scroll to discover <span aria-hidden="true">↓</span></span></div>
+      <div class="motion-hero-controls" role="group" aria-label="Background image"><button type="button" data-slide-prev aria-label="Previous image">←</button><span class="motion-hero-count" data-slide-count>01 / 03</span><button type="button" data-slide-next aria-label="Next image">→</button></div>
+    </section>
+
+    <section class="expertise" aria-labelledby="expertise-title">
+      <h2 id="expertise-title" class="visually-hidden">Expertise</h2>
+      <div class="marquee" aria-hidden="true"><div>SHOPIFY <b>✳</b> WORDPRESS <b>✳</b> WOOCOMMERCE <b>✳</b> CUSTOM DEVELOPMENT <b>✳</b> PERFORMANCE OPTIMISATION <b>✳</b> RESPONSIVE DEVELOPMENT <b>✳</b> SHOPIFY <b>✳</b> WORDPRESS <b>✳</b> WOOCOMMERCE <b>✳</b> CUSTOM DEVELOPMENT <b>✳</b> PERFORMANCE OPTIMISATION <b>✳</b> RESPONSIVE DEVELOPMENT <b>✳</b></div></div>
+      <ul class="visually-hidden"><li>Shopify</li><li>WordPress</li><li>WooCommerce</li><li>Custom development</li><li>Performance optimisation</li><li>Responsive development</li></ul>
+      <div class="shell proof">
+        <ul class="proof-grid" role="list">
+          <li class="proof-intro"><p class="eyebrow"><span class="eyebrow-line"></span> Experience</p>Work that shows up in the numbers.</li>
+          <li class="proof-item"><strong>500+</strong><span>Products in the Shopify catalogue I rebuilt for Diviniti</span></li>
+          <li class="proof-item"><strong>20+</strong><span>Custom, editable Shopify Liquid sections built for one store</span></li>
+          <li class="proof-item"><strong>40%</strong><span>Reported improvement in Largest Contentful Paint after the image rebuild</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="clients" aria-labelledby="clients-title">
+      <div class="shell clients-inner">
+        <h2 id="clients-title" class="clients-label">Selected clients</h2>
+        <ul class="clients-list">
+          <li><a href="work.html#diviniti"><span class="client-name">Diviniti</span><span class="client-meta">Shopify</span></a></li>
+          <li><a href="work.html#portrait-on-gold"><span class="client-name">Portrait <em>on</em> Gold</span><span class="client-meta">Shopify</span></a></li>
+          <li><a href="work.html#majestic"><span class="client-name">The Majestic India</span><span class="client-meta">WordPress</span></a></li>
+          <li><a href="work.html#uncostly"><span class="client-name">Uncostly</span><span class="client-meta">WooCommerce</span></a></li>
+        </ul>
+      </div>
     </section>
 
     <section class="project-showcase" id="selected-projects" aria-labelledby="project-showcase-title" data-project-showcase>
-      <div class="project-showcase-shell project-showcase-head"><div><span class="project-showcase-kicker">Selected projects / screenshots</span><h2 id="project-showcase-title">Real websites. <em>Close up.</em></h2></div><p class="project-showcase-intro">Explore the real sites I built. Choose a project to see its desktop and mobile views.</p></div>
+      <div class="project-showcase-shell project-showcase-head"><div><span class="project-showcase-kicker">Selected work / case studies</span><h2 id="project-showcase-title">Real websites. <em>Close up.</em></h2></div><p class="project-showcase-intro">Choose a project to see its desktop and mobile views, the problem it solved and the result.</p></div>
       <div class="project-showcase-shell project-showcase-layout">
-        <div class="showcase-stage" aria-label="Drag to change the selected project">
-          <div class="showcase-slide is-active" data-title="Diviniti" data-kind="Shopify storefront" data-description="A large catalogue made easier to browse and maintain, with responsive imagery and editable Shopify sections." data-tags="Shopify|Liquid|Performance" data-link="case-diviniti.html" data-color="#bca88f" aria-hidden="false">
+        <div class="showcase-stage">
+          <div class="showcase-slide is-active" data-title="Diviniti" data-kind="Shopify · Store rebuild" data-description="A 500+ product luxury catalogue rebuilt around faster image loading and 20+ editable Liquid sections." data-result="40% reported improvement in Largest Contentful Paint." data-tags="Shopify Development|Liquid|Performance Optimisation|Responsive Development" data-link="case-diviniti.html" data-link-label="Read the case study" data-color="#bca88f" aria-hidden="false">
           <div class="showcase-orbit" aria-hidden="true"></div><span class="showcase-art-number" aria-hidden="true">01</span>
-          <div class="showcase-browser"><div class="showcase-browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>Diviniti / DESKTOP</span></div><img src="assets/diviniti-desktop.webp" alt="Diviniti desktop website screenshot" loading="eager" decoding="async" draggable="false" width="1440" height="900"></div>
-          <div class="showcase-phone"><img src="assets/diviniti-mobile.webp" alt="Diviniti mobile website screenshot" loading="eager" decoding="async" draggable="false" width="390" height="844"></div>
-        </div><div class="showcase-slide" data-title="Portrait on Gold" data-kind="Custom commerce" data-description="A personalized shopping journey with custom variant logic, fast filtering and order verification." data-tags="Shopify|JavaScript|Personalization" data-link="case-portrait-on-gold.html" data-color="#bfa997" aria-hidden="true">
+          <div class="showcase-browser"><div class="showcase-browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>Diviniti / DESKTOP</span></div><img src="assets/diviniti-desktop.webp" srcset="assets/diviniti-desktop-960.webp 960w, assets/diviniti-desktop.webp 1897w" sizes="(max-width: 760px) 80vw, 46vw" alt="Diviniti desktop website screenshot" loading="lazy" decoding="async" draggable="false" width="1440" height="900"></div>
+          <div class="showcase-phone"><img src="assets/diviniti-mobile.webp" srcset="assets/diviniti-mobile-400.webp 400w, assets/diviniti-mobile.webp 800w" sizes="(max-width: 760px) 26vw, 15vw" alt="Diviniti mobile website screenshot" loading="lazy" decoding="async" draggable="false" width="390" height="844"></div>
+        </div><div class="showcase-slide" data-title="Portrait on Gold" data-kind="Shopify · Custom commerce" data-description="A made-to-order portrait store with custom size, frame and finish options, app-free filtering and a WhatsApp order check." data-result="Orders are confirmed on WhatsApp before a custom portrait goes into production." data-tags="Shopify Development|Liquid|JavaScript|WATI Integration" data-link="case-portrait-on-gold.html" data-link-label="Read the case study" data-color="#bfa997" aria-hidden="true">
           <div class="showcase-orbit" aria-hidden="true"></div><span class="showcase-art-number" aria-hidden="true">02</span>
-          <div class="showcase-browser"><div class="showcase-browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>Portrait on Gold / DESKTOP</span></div><img src="assets/pog-desktop.webp" alt="Portrait on Gold desktop website screenshot" loading="lazy" decoding="async" draggable="false" width="1440" height="900"></div>
-          <div class="showcase-phone"><img src="assets/pog-mobile.webp" alt="Portrait on Gold mobile website screenshot" loading="lazy" decoding="async" draggable="false" width="390" height="844"></div>
-        </div><div class="showcase-slide" data-title="The Majestic India" data-kind="Content experience" data-description="A mobile-first WordPress experience with clear paths for each program and an easy application journey." data-tags="WordPress|Elementor|Mobile UI" data-link="work.html#majestic" data-color="#c2ad9f" aria-hidden="true">
+          <div class="showcase-browser"><div class="showcase-browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>Portrait on Gold / DESKTOP</span></div><img data-src="assets/pog-desktop.webp" data-srcset="assets/pog-desktop-960.webp 960w, assets/pog-desktop.webp 1911w" sizes="(max-width: 760px) 80vw, 46vw" alt="Portrait on Gold desktop website screenshot" loading="lazy" decoding="async" draggable="false" width="1440" height="900"></div>
+          <div class="showcase-phone"><img data-src="assets/pog-mobile.webp" data-srcset="assets/pog-mobile-400.webp 400w, assets/pog-mobile.webp 800w" sizes="(max-width: 760px) 26vw, 15vw" alt="Portrait on Gold mobile website screenshot" loading="lazy" decoding="async" draggable="false" width="390" height="844"></div>
+        </div><div class="showcase-slide" data-title="The Majestic India" data-kind="WordPress · Business website" data-description="A mobile-first WordPress site with a dedicated page for each of its four programs." data-result="Every program page leads to the same clear Apply Now path." data-tags="WordPress|Elementor|Responsive Development" data-link="work.html#majestic" data-link-label="See project details" data-color="#c2ad9f" aria-hidden="true">
           <div class="showcase-orbit" aria-hidden="true"></div><span class="showcase-art-number" aria-hidden="true">03</span>
-          <div class="showcase-browser"><div class="showcase-browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>The Majestic India / DESKTOP</span></div><img src="assets/majestic-desktop.webp" alt="The Majestic India desktop website screenshot" loading="lazy" decoding="async" draggable="false" width="1440" height="900"></div>
-          <div class="showcase-phone"><img src="assets/majestic-mobile.webp" alt="The Majestic India mobile website screenshot" loading="lazy" decoding="async" draggable="false" width="390" height="844"></div>
-        </div><div class="showcase-slide" data-title="Uncostly" data-kind="Product catalogue" data-description="A WooCommerce catalogue that helps visitors compare equipment and choose a purchase or rental path." data-tags="WooCommerce|Comparison|Catalogue UX" data-link="work.html#uncostly" data-color="#aab4ad" aria-hidden="true">
+          <div class="showcase-browser"><div class="showcase-browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>The Majestic India / DESKTOP</span></div><img data-src="assets/majestic-desktop.webp" data-srcset="assets/majestic-desktop-960.webp 960w, assets/majestic-desktop.webp 1897w" sizes="(max-width: 760px) 80vw, 46vw" alt="The Majestic India desktop website screenshot" loading="lazy" decoding="async" draggable="false" width="1440" height="900"></div>
+          <div class="showcase-phone"><img data-src="assets/majestic-mobile.webp" data-srcset="assets/majestic-mobile-400.webp 400w, assets/majestic-mobile.webp 800w" sizes="(max-width: 760px) 26vw, 15vw" alt="The Majestic India mobile website screenshot" loading="lazy" decoding="async" draggable="false" width="390" height="844"></div>
+        </div><div class="showcase-slide" data-title="Uncostly" data-kind="WooCommerce · Product catalogue" data-description="An equipment catalogue across 12+ categories with product comparison, wishlist and order tracking." data-result="Visitors can buy or rent equipment from the same catalogue." data-tags="WooCommerce|WordPress|Catalogue UX" data-link="work.html#uncostly" data-link-label="See project details" data-color="#aab4ad" aria-hidden="true">
           <div class="showcase-orbit" aria-hidden="true"></div><span class="showcase-art-number" aria-hidden="true">04</span>
-          <div class="showcase-browser"><div class="showcase-browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>Uncostly / DESKTOP</span></div><img src="assets/uncostly-desktop.webp" alt="Uncostly desktop website screenshot" loading="lazy" decoding="async" draggable="false" width="1440" height="900"></div>
-          <div class="showcase-phone"><img src="assets/uncostly-mobile.webp" alt="Uncostly mobile website screenshot" loading="lazy" decoding="async" draggable="false" width="390" height="844"></div>
+          <div class="showcase-browser"><div class="showcase-browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>Uncostly / DESKTOP</span></div><img data-src="assets/uncostly-desktop.webp" data-srcset="assets/uncostly-desktop-960.webp 960w, assets/uncostly-desktop.webp 1897w" sizes="(max-width: 760px) 80vw, 46vw" alt="Uncostly desktop website screenshot" loading="lazy" decoding="async" draggable="false" width="1440" height="900"></div>
+          <div class="showcase-phone"><img data-src="assets/uncostly-mobile.webp" data-srcset="assets/uncostly-mobile-400.webp 400w, assets/uncostly-mobile.webp 800w" sizes="(max-width: 760px) 26vw, 15vw" alt="Uncostly mobile website screenshot" loading="lazy" decoding="async" draggable="false" width="390" height="844"></div>
         </div>
-          <span class="showcase-stage-label">Drag to see the next project ↔</span>
+          <span class="showcase-stage-label" aria-hidden="true">Drag or use the arrows ↔</span>
+          <div class="showcase-stage-controls"><button type="button" data-project-prev aria-label="Previous project">←</button><button type="button" data-project-next aria-label="Next project">→</button></div>
         </div>
-        <div class="showcase-info"><span class="showcase-count" data-project-count aria-live="polite">01 / 04</span><p class="showcase-kind" data-project-kind>Shopify storefront</p><h3 data-project-title>Diviniti</h3><p class="showcase-description" data-project-description></p><div class="showcase-tags" data-project-tags></div><a class="showcase-link" data-project-link href="case-diviniti.html">Explore this project <span aria-hidden="true">↗</span></a><div class="showcase-navigation"><span>Choose a project</span><div><button type="button" data-project-prev aria-label="Previous project">←</button><button type="button" data-project-next aria-label="Next project">→</button></div></div></div>
+        <div class="showcase-info"><span class="showcase-count" data-project-count aria-live="polite">01 / 04</span><p class="showcase-kind" data-project-kind>Shopify · Store rebuild</p><h3 data-project-title>Diviniti</h3><p class="showcase-description" data-project-description>A 500+ product luxury catalogue rebuilt around faster image loading and 20+ editable Liquid sections.</p><p class="showcase-result"><b>Result</b><span data-project-result>40% reported improvement in Largest Contentful Paint.</span></p><div class="showcase-tags" data-project-tags><span>Shopify Development</span><span>Liquid</span><span>Performance Optimisation</span><span>Responsive Development</span></div><a class="showcase-link" data-project-link href="case-diviniti.html"><span data-project-link-label>Read the case study</span> <span aria-hidden="true">↗</span></a><div class="showcase-navigation"><span>Choose a project</span><div><button type="button" data-project-prev aria-label="Previous project">←</button><button type="button" data-project-next aria-label="Next project">→</button></div></div></div>
       </div>
-      <div class="project-showcase-shell showcase-thumbnails" role="group" aria-label="Project screenshots"><button type="button" class="showcase-thumbnail" data-project-index="0" aria-pressed="true" aria-label="Show Diviniti screenshots"><img src="assets/diviniti-desktop.webp" alt="" loading="lazy" decoding="async" width="64" height="53"><span><small>01 / 04</small>Diviniti</span></button><button type="button" class="showcase-thumbnail" data-project-index="1" aria-pressed="false" aria-label="Show Portrait on Gold screenshots"><img src="assets/pog-desktop.webp" alt="" loading="lazy" decoding="async" width="64" height="53"><span><small>02 / 04</small>Portrait on Gold</span></button><button type="button" class="showcase-thumbnail" data-project-index="2" aria-pressed="false" aria-label="Show The Majestic India screenshots"><img src="assets/majestic-desktop.webp" alt="" loading="lazy" decoding="async" width="64" height="53"><span><small>03 / 04</small>The Majestic India</span></button><button type="button" class="showcase-thumbnail" data-project-index="3" aria-pressed="false" aria-label="Show Uncostly screenshots"><img src="assets/uncostly-desktop.webp" alt="" loading="lazy" decoding="async" width="64" height="53"><span><small>04 / 04</small>Uncostly</span></button></div>
-      <div class="project-showcase-shell showcase-footer"><span>Real project screenshots from Shadab Ali’s portfolio.</span><a href="work.html">View all project details ↗</a></div>
+      <div class="project-showcase-shell showcase-thumbnails" role="group" aria-label="Choose a project"><button type="button" class="showcase-thumbnail" data-project-index="0" aria-pressed="true" aria-label="Show Diviniti"><img src="assets/diviniti-thumb.webp" alt="" loading="lazy" decoding="async" width="64" height="53"><span><small>01 / 04</small>Diviniti</span></button><button type="button" class="showcase-thumbnail" data-project-index="1" aria-pressed="false" aria-label="Show Portrait on Gold"><img src="assets/pog-thumb.webp" alt="" loading="lazy" decoding="async" width="64" height="53"><span><small>02 / 04</small>Portrait on Gold</span></button><button type="button" class="showcase-thumbnail" data-project-index="2" aria-pressed="false" aria-label="Show The Majestic India"><img src="assets/majestic-thumb.webp" alt="" loading="lazy" decoding="async" width="64" height="53"><span><small>03 / 04</small>The Majestic India</span></button><button type="button" class="showcase-thumbnail" data-project-index="3" aria-pressed="false" aria-label="Show Uncostly"><img src="assets/uncostly-thumb.webp" alt="" loading="lazy" decoding="async" width="64" height="53"><span><small>04 / 04</small>Uncostly</span></button></div>
+      <div class="project-showcase-shell showcase-footer"><span>Real screenshots of client sites I built.</span><a href="work.html">View My Work ↗</a></div>
     </section>
 
-    <div class="marquee" aria-label="Shopify, WordPress, WooCommerce, custom web development"><div>SHOPIFY <b>✳</b> WORDPRESS <b>✳</b> WOOCOMMERCE <b>✳</b> CUSTOM WEB <b>✳</b> SHOPIFY <b>✳</b> WORDPRESS <b>✳</b> WOOCOMMERCE <b>✳</b> CUSTOM WEB <b>✳</b></div></div>
+    <section class="home-services section" aria-labelledby="services-title">
+      <div class="shell">
+        <div class="section-head split-head"><div><p class="eyebrow"><span class="eyebrow-line"></span> Services</p><h2 id="services-title">What I can build <em>for you.</em></h2></div><p>New builds and improvements to what you already have, on the platform that fits how your business works.</p></div>
+        <div class="home-path-grid">
+          <a href="services.html#shopify" class="home-path"><span>01 / SHOPIFY</span><h3>Shopify development</h3><p>New stores, Shopify 2.0 sections, Liquid customisation, product options, app integrations and speed work.</p><b aria-hidden="true">↗</b></a>
+          <a href="services.html#wordpress" class="home-path"><span>02 / WORDPRESS + WOOCOMMERCE</span><h3>WordPress &amp; WooCommerce</h3><p>Business websites, WooCommerce stores and landing pages that your team can keep up to date.</p><b aria-hidden="true">↗</b></a>
+          <a href="services.html#custom" class="home-path"><span>03 / CUSTOM</span><h3>Custom web development</h3><p>Responsive websites, landing pages, interactive experiences and custom functionality built to your brief.</p><b aria-hidden="true">↗</b></a>
+        </div>
+        <div class="redesign-band">
+          <div><p class="eyebrow"><span class="eyebrow-line"></span> 04 / Redesign</p><h3>Website redesign &amp; improvements</h3></div>
+          <p>Already have a website? I can improve its design, mobile experience, speed, structure or functionality without rebuilding everything unnecessarily.</p>
+          <a class="button button-dark" href="contact.html#inquiry" data-service="Website redesign or improvements">Start a Project <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
 
-    <section class="home-paths section" aria-labelledby="home-paths-title"><div class="shell"><div class="section-head"><p class="eyebrow"><span class="eyebrow-line"></span> Start here</p><h2 id="home-paths-title">Find the path that <em>fits.</em></h2></div><div class="home-path-grid"><a href="services.html" class="home-path"><span>01 / SERVICES</span><h3>What can we build?</h3><p>Shopify, WordPress, WooCommerce, and custom sites shaped around your business.</p><b aria-hidden="true">↗</b></a><a href="work.html" class="home-path"><span>02 / SELECTED WORK</span><h3>See the work.</h3><p>Four projects, their challenges, and the features built to solve them.</p><b aria-hidden="true">↗</b></a><a href="about.html" class="home-path"><span>03 / HOW IT WORKS</span><h3>Meet your developer.</h3><p>Learn who I am and how we’ll move from first conversation to launch.</p><b aria-hidden="true">↗</b></a></div></div></section>
-    <section class="home-feature section" aria-labelledby="home-feature-title"><div class="shell home-feature-layout"><div><p class="eyebrow"><span class="eyebrow-line"></span> From the portfolio</p><h2 id="home-feature-title">Built to solve a <em>real problem.</em></h2><p>For Diviniti, I rebuilt the image loading approach for a 500+ product Shopify catalogue and created 20+ editable Liquid sections. The source portfolio reports a 40% improvement in Largest Contentful Paint.</p><a class="button button-dark" href="work.html">Explore the case studies ↗</a></div><a class="home-feature-image" href="work.html" aria-label="Explore Diviniti case study"><img src="assets/diviniti-desktop.webp" alt="Diviniti ecommerce homepage" loading="lazy" width="1200" height="800"><span>01 / DIVINITI ↗</span></a></div></section>
-    <section class="home-contact section"><div class="shell"><p class="eyebrow"><span class="eyebrow-line"></span> Your next step</p><h2>Have a project <em>in mind?</em></h2><a class="button button-accent" href="contact.html">Request a website ↗</a></div></section>
+    <section class="why section" aria-labelledby="why-title">
+      <div class="shell">
+        <div class="section-head"><p class="eyebrow"><span class="eyebrow-line"></span> Why work with me</p><h2 id="why-title">Why work <em>with me?</em></h2></div>
+        <ol class="why-grid">
+          <li><span>01</span><h3>Direct communication</h3><p>You work directly with the developer building your website.</p></li>
+          <li><span>02</span><h3>Built around your business</h3><p>Solutions are based on your actual requirements instead of unnecessary features.</p></li>
+          <li><span>03</span><h3>Responsive by default</h3><p>Every website is developed for desktop, tablet and mobile.</p></li>
+          <li><span>04</span><h3>Support beyond launch</h3><p>Post-launch support and improvements can be provided as agreed.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!--
+      TESTIMONIALS — PLACEHOLDER CONTENT. Do not publish placeholder quotes.
+      This section stays hidden (the `hidden` attribute below) until you add real testimonials.
+      To preview the layout, open the page with ?preview at the end of the address.
+      When you have real testimonials:
+        1. Replace the quote, name and company/role in a card.
+        2. Delete `data-placeholder` from that card, and delete any cards you are not using.
+        3. Delete `hidden` from the <section> tag.
+    -->
+    <section class="testimonials section" aria-labelledby="testimonials-title" data-testimonials hidden>
+      <div class="shell">
+        <div class="section-head"><p class="eyebrow"><span class="eyebrow-line"></span> Testimonials</p><h2 id="testimonials-title">What clients <em>say.</em></h2></div>
+        <div class="testimonial-grid">
+          <figure class="testimonial" data-placeholder>
+            <blockquote><p>Client testimonial will go here.</p></blockquote>
+            <figcaption><strong>Client name</strong><span>Company / Role</span></figcaption>
+          </figure>
+          <figure class="testimonial" data-placeholder>
+            <blockquote><p>Client testimonial will go here.</p></blockquote>
+            <figcaption><strong>Client name</strong><span>Company / Role</span></figcaption>
+          </figure>
+          <figure class="testimonial" data-placeholder>
+            <blockquote><p>Client testimonial will go here.</p></blockquote>
+            <figcaption><strong>Client name</strong><span>Company / Role</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section process" id="process" aria-labelledby="process-title"><div class="shell process-layout"><div class="process-intro"><p class="eyebrow"><span class="eyebrow-line"></span> How we work together</p><h2 id="process-title">Clear from the <em>first conversation.</em></h2><p>Good work needs a good process. You’ll know what’s being built, why it matters, and what happens next.</p><a class="button button-light" href="contact.html#inquiry">Start a Project ↗</a></div><div class="steps"><div class="step"><span>01</span><div><h3>Discover</h3><p>We talk through your goals, audience, existing site, timeline, and the problem to solve.</p></div></div><div class="step"><span>02</span><div><h3>Design &amp; build</h3><p>I shape the experience and develop it in stages, with check-ins along the way.</p></div></div><div class="step"><span>03</span><div><h3>Test &amp; launch</h3><p>We review across screen sizes, check the key journeys, and get it ready to go live.</p></div></div><div class="step"><span>04</span><div><h3>Support</h3><p>I stay reachable for questions and fixes after handoff. We’ll agree on the support scope together.</p></div></div></div></div></section>
+
+    <section class="skills section" aria-labelledby="skills-title">
+      <div class="shell skills-layout">
+        <div><p class="eyebrow"><span class="eyebrow-line"></span> Technology</p><h2 id="skills-title">Tools I work <em>with.</em></h2></div>
+        <ul class="skills-list"><li>Shopify</li><li>Liquid</li><li>WordPress</li><li>WooCommerce</li><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Responsive Design</li><li>Performance Optimisation</li></ul>
+      </div>
+    </section>
+
+    <section class="home-about section" aria-labelledby="home-about-title">
+      <div class="shell home-about-layout">
+        <div class="home-about-photo"><img src="assets/profile.webp" alt="Portrait of Shadab Ali" loading="lazy" decoding="async" width="900" height="1046"></div>
+        <div>
+          <p class="eyebrow"><span class="eyebrow-line"></span> About Shadab</p>
+          <h2 id="home-about-title">One developer. <em>Fully invested.</em></h2>
+          <p>I’m Shadab Ali, a web developer based in Delhi. I focus on practical websites rather than unnecessary complexity. My goal is to understand how your business works first, then build a website that supports it.</p>
+          <p>You’ll work directly with me throughout the project — from the initial discussion to development, testing and launch.</p>
+          <a class="text-link" href="about.html">More about me <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-contact section" aria-labelledby="cta-title"><div class="shell"><div><p class="eyebrow"><span class="eyebrow-line"></span> Your next step</p><h2 id="cta-title">Have a project <em>in mind?</em></h2></div><a class="button button-accent" href="contact.html#inquiry">Start a Project <span aria-hidden="true">↗</span></a></div></section>
   </main>
 
-  <footer class="footer"><div class="shell"><div class="footer-top"><div><a class="brand" href="index.html"><span class="brand-symbol" aria-hidden="true">S<span>.</span></span><span>shadab ali<span class="brand-dot">.</span></span></a><p>Websites built around your business.</p></div><a class="footer-big-link" href="contact.html#inquiry">Have a project? <span>Let’s talk ↗</span></a></div><div class="footer-bottom"><span>© <span id="year">2026</span> Shadab Ali</span><span>Delhi, India · Working with clients everywhere</span><div><a href="mailto:shadab18ali@gmail.com">Email</a><a href="https://wa.me/919931394885" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="https://linkedin.com/in/shadab-ali-7b0261238" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></div></div></footer>
+  <footer class="footer"><div class="shell"><div class="footer-top"><div><a class="brand" href="index.html" aria-label="Shadab Ali, home"><span class="brand-symbol" aria-hidden="true">S<span>.</span></span><span>shadab ali<span class="brand-dot">.</span></span></a><p>Freelance Shopify, WordPress &amp; WooCommerce developer.</p></div><nav class="footer-nav" aria-label="Footer"><a href="work.html">Work</a><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a><a class="footer-cta" href="contact.html#inquiry">Start a Project ↗</a></nav></div><div class="footer-bottom"><span>© <span id="year">2026</span> Shadab Ali</span><span>Delhi, India · Working with clients worldwide</span><div><a href="mailto:shadab18ali@gmail.com">Email</a><a href="https://wa.me/919931394885" target="_blank" rel="noopener noreferrer">WhatsApp</a><a href="https://linkedin.com/in/shadab-ali-7b0261238" target="_blank" rel="noopener noreferrer">LinkedIn</a></div></div></div></footer>
 </body>
 </html>

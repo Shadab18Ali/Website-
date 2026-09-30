@@ -23,20 +23,6 @@ document.addEventListener('keydown', event => {
   }
 });
 
-const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
-const scene = document.querySelector('.hero-scene');
-const stage = document.querySelector('#sceneStage');
-if (scene && stage && !reducedMotion.matches && finePointer.matches) {
-  scene.addEventListener('pointermove', event => {
-    const bounds = scene.getBoundingClientRect();
-    const x = (event.clientX - bounds.left) / bounds.width - 0.5;
-    const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-    stage.style.transform = `rotateX(${5 - y * 12}deg) rotateY(${-12 + x * 20}deg)`;
-  });
-  scene.addEventListener('pointerleave', () => { stage.style.transform = ''; });
-}
-
 document.querySelectorAll('[data-service]').forEach(link => {
   link.href = `contact.html?service=${encodeURIComponent(link.dataset.service)}#inquiry`;
 });
@@ -45,7 +31,9 @@ const serviceSelect = document.querySelector('[name="service"]');
 if (serviceSelect) {
   const requestedService = new URLSearchParams(window.location.search).get('service');
   if (requestedService) {
-    const option = [...serviceSelect.options].find(item => item.textContent.toLowerCase().includes(requestedService.toLowerCase().split(' ')[0]));
+    const wanted = requestedService.toLowerCase();
+    const option = [...serviceSelect.options].find(item => item.textContent.toLowerCase() === wanted)
+      || [...serviceSelect.options].find(item => item.value && item.textContent.toLowerCase().includes(wanted.split(' ')[0]));
     if (option) serviceSelect.value = option.value;
   }
 }
@@ -71,8 +59,10 @@ if (inquiryForm) {
       const service = String(values.get('service')).trim();
       const website = String(values.get('website')).trim();
       const details = String(values.get('details')).trim();
+      const budget = String(values.get('budget') || '').trim() || 'Not specified';
+      const timeline = String(values.get('timeline') || '').trim() || 'Not specified';
       const subject = `Website inquiry — ${service} — ${name}`;
-      const body = `Hi Shadab,\n\nI'd like to discuss a website project.\n\nName: ${name}\nEmail: ${email}\nService: ${service}\nCurrent website: ${website || 'Not provided'}\n\nProject details:\n${details}\n\nThanks,\n${name}`;
+      const body = `Hi Shadab,\n\nI'd like to discuss a website project.\n\nName: ${name}\nEmail: ${email}\nService: ${service}\nCurrent website: ${website || 'Not provided'}\nEstimated budget: ${budget}\nDesired timeline: ${timeline}\n\nProject details:\n${details}\n\nThanks,\n${name}`;
       formStatus.textContent = 'Your email app should open now. Review the message and press Send there.';
       window.location.href = `mailto:shadab18ali@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       return;
@@ -90,7 +80,7 @@ if (inquiryForm) {
       inquiryForm.reset();
       formStatus.textContent = 'Your request was sent. Thank you — I’ll reply by email.';
       formStatus.classList.add('is-success');
-      formStatus.focus();
+      window.location.href = 'thanks.html';
     } catch (error) {
       formStatus.textContent = 'The form could not send your request. Please use the direct email or WhatsApp link on this page.';
       formStatus.classList.add('is-error');
@@ -101,6 +91,18 @@ if (inquiryForm) {
       submitButton.innerHTML = originalButton;
     }
   });
+}
+
+// Testimonials ship as hidden placeholders; ?preview shows them, and placeholder cards never render otherwise.
+const testimonials = document.querySelector('[data-testimonials]');
+if (testimonials) {
+  if (new URLSearchParams(window.location.search).has('preview')) {
+    testimonials.hidden = false;
+    testimonials.classList.add('is-preview');
+  } else {
+    testimonials.querySelectorAll('[data-placeholder]').forEach(card => card.remove());
+    if (!testimonials.querySelector('.testimonial')) testimonials.hidden = true;
+  }
 }
 
 document.querySelector('#year').textContent = new Date().getFullYear();

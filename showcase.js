@@ -41,18 +41,26 @@
     const title = gallery.querySelector('[data-project-title]');
     const description = gallery.querySelector('[data-project-description]');
     const tags = gallery.querySelector('[data-project-tags]');
+    const result = gallery.querySelector('[data-project-result]');
     const link = gallery.querySelector('[data-project-link]');
-    const previous = gallery.querySelector('[data-project-prev]');
-    const next = gallery.querySelector('[data-project-next]');
+    const linkLabel = gallery.querySelector('[data-project-link-label]');
+    const previous = gallery.querySelectorAll('[data-project-prev]');
+    const next = gallery.querySelectorAll('[data-project-next]');
     let index = 0;
     let dragStart = null;
+    const hydrate = slide => slide.querySelectorAll('img[data-src]').forEach(img => {
+      if (img.dataset.srcset) img.srcset = img.dataset.srcset;
+      img.src = img.dataset.src;
+      img.removeAttribute('data-src');
+      img.removeAttribute('data-srcset');
+    });
     const setProject = target => {
       index = (target + slides.length) % slides.length;
       const slide = slides[index];
       slides.forEach((item, position) => {
         item.classList.toggle('is-active', position === index);
         item.setAttribute('aria-hidden', String(position !== index));
-        if (position === index) item.querySelectorAll('img').forEach(img => img.loading = 'eager');
+        if (position === index) hydrate(item);
       });
       thumbnails.forEach((button, position) => button.setAttribute('aria-pressed', String(position === index)));
       stage.style.setProperty('--stage-color', slide.dataset.color);
@@ -60,19 +68,21 @@
       kind.textContent = slide.dataset.kind;
       title.textContent = slide.dataset.title;
       description.textContent = slide.dataset.description;
+      if (result) result.textContent = slide.dataset.result || '';
       tags.replaceChildren(...slide.dataset.tags.split('|').map(label => {
         const chip = document.createElement('span');
         chip.textContent = label;
         return chip;
       }));
       link.href = slide.dataset.link;
-      link.setAttribute('aria-label', `Explore ${slide.dataset.title} case study`);
+      if (linkLabel) linkLabel.textContent = slide.dataset.linkLabel || 'Explore this project';
+      link.setAttribute('aria-label', `${linkLabel ? linkLabel.textContent : 'Explore'}: ${slide.dataset.title}`);
     };
-    previous.addEventListener('click', () => setProject(index - 1));
-    next.addEventListener('click', () => setProject(index + 1));
+    previous.forEach(button => button.addEventListener('click', () => setProject(index - 1)));
+    next.forEach(button => button.addEventListener('click', () => setProject(index + 1)));
     thumbnails.forEach((button, position) => button.addEventListener('click', () => setProject(position)));
     gallery.addEventListener('keydown', event => {
-      if (!event.target.closest('.showcase-navigation,.showcase-thumbnails')) return;
+      if (!event.target.closest('.showcase-navigation,.showcase-thumbnails,.showcase-stage-controls')) return;
       if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
         event.preventDefault();
         setProject(index + (event.key === 'ArrowRight' ? 1 : -1));
@@ -120,5 +130,7 @@
       }, { passive: true });
     }
     setProject(0);
+    if (document.readyState === 'complete') slides.forEach(hydrate);
+    else addEventListener('load', () => slides.forEach(hydrate), { once: true });
   });
 })();
