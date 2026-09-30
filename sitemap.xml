@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://website-swart-nu-54.vercel.app/</loc></url>
-  <url><loc>https://website-swart-nu-54.vercel.app/services.html</loc></url>
   <url><loc>https://website-swart-nu-54.vercel.app/work.html</loc></url>
   <url><loc>https://website-swart-nu-54.vercel.app/case-diviniti.html</loc></url>
   <url><loc>https://website-swart-nu-54.vercel.app/case-portrait-on-gold.html</loc></url>
+  <url><loc>https://website-swart-nu-54.vercel.app/case-majestic-india.html</loc></url>
+  <url><loc>https://website-swart-nu-54.vercel.app/case-uncostly.html</loc></url>
+  <url><loc>https://website-swart-nu-54.vercel.app/services.html</loc></url>
   <url><loc>https://website-swart-nu-54.vercel.app/about.html</loc></url>
   <url><loc>https://website-swart-nu-54.vercel.app/contact.html</loc></url>
 </urlset>
