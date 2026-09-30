@@ -4,13 +4,13 @@ Standalone multipage website for prospective website clients. The HTML, CSS, Jav
 
 ## Pages
 
-- `index.html` — hero, expertise, selected clients, project slider, services, why work with me, testimonials (hidden until filled), process, technology, about and closing call to action
+- `index.html` — letter-by-letter name hero, editorial image sequence, /Who am I, selected projects, numbers, "Build better. Grow smarter.", selected clients, Let's talk and the closing name
+- `work.html` — the four projects as large editorial rows
+- `case-diviniti.html`, `case-portrait-on-gold.html`, `case-majestic-india.html`, `case-uncostly.html` — project detail pages (close, cover, live site, intro, client/platform/industry/role, /Details challenge and solution, /Image gallery, next project). On the homepage and projects page, "View project" opens the same page as a full-screen overlay; the address changes so it can be shared, and Back or Escape closes it.
 - `services.html` — the four services with their scope, and the FAQ
-- `work.html` — project slider and a breakdown of each project (platform, problem, role, what I did, result, services)
-- `case-diviniti.html` and `case-portrait-on-gold.html` — detailed case studies
-- `about.html` — background, working directly together, technology and process
-- `contact.html` — project request form (including budget and timeline) and direct contact options
-- `thanks.html` — thank-you page shown after the contact form sends
+- `about.html` — introduction, working directly together, process, why work with me and tools
+- `contact.html` — Let's talk details and the project brief form (including budget and timeline)
+- `thanks.html` — shown after the contact form sends
 - `404.html` — page-not-found page (Vercel serves it for missing URLs)
 
 ## Upload to GitHub and deploy on Vercel
@@ -23,23 +23,21 @@ Standalone multipage website for prospective website clients. The HTML, CSS, Jav
 
 Vercel's `/api/contact` function validates required fields, checks the hidden spam field, limits request size, and sends a plain-text inquiry email through Resend. The sender's address is set as the reply-to address. Local static previews prepare an email in the visitor's mail app because `python -m http.server` does not run Vercel Functions.
 
-## How the styles and scripts fit together
+## How it is built
 
-Stylesheets load in this order, each refining the one before: `styles.css` (base layout, plus the self-hosted `@font-face` rules), `art-direction-v2.css` (current palette and page art direction), `motion.css`, `showcase.css`, the page-specific `case-study.css` or `contact-form.css`, and finally `components.css` (the conversion sections, accessible accent colours and mobile refinements).
+- `site.css` — the whole design system: ivory/ink palette, Inter Tight typography, the editorial grid, every section and page, motion and the reduced-motion rules.
+- `site.js` — header behaviour, mobile menu, scroll reveals, parallax on the image sequence, the "View" cursor (mouse only), the project overlay, service pre-selection from `?service=`, and the contact form.
+- The header, footer and "Let's talk" section are repeated in every HTML page. If you change one, change them all.
 
-- `script.js` — mobile menu, contact form, service pre-selection from `?service=`, testimonials preview.
-- `motion.js` — hero image slider, reveal-on-scroll, scroll progress and back-to-top.
-- `showcase.js` — project slider (arrows, thumbnails, swipe/drag) and the desktop cursor ring.
+## Content that comes from you
 
-The header, navigation and footer are repeated in every HTML page. If you change one, change them all.
+Everything on the site comes from your existing site text and your own project screenshots. Project years are not shown because they are not recorded anywhere; add a `Year` row to a project's details list in its `case-*.html` file if you want one. The only figure quoted is Diviniti's 40% Largest Contentful Paint improvement, labelled as reported.
 
-## Testimonials
+## Images and fonts
 
-The homepage has a testimonials section ready for 2–3 quotes. It ships **hidden** so placeholder text never reaches clients. Open `/index.html?preview` to see the layout with its placeholders. When you have real testimonials, follow the comment above the section in `index.html`: replace the text in a card, delete `data-placeholder` from it, delete unused cards, and remove `hidden` from the `<section>` tag.
+Project images live in `assets/work/`, cropped from the full-length screenshots in the repository's history (commit `279d757`). Each image comes in two widths (for example `diviniti-cover-1600.webp` and `diviniti-cover-900.webp`) and pages let the browser pick the right one. If you replace an image, replace both widths with the same names. Browsers cache images for a day (`vercel.json`).
 
-## Images
-
-Fonts live in `assets/fonts` (DM Sans and Space Grotesk, SIL Open Font License). Project screenshots come in several sizes: `name-desktop.webp` (full), `name-desktop-960.webp`, `name-mobile.webp`, `name-mobile-400.webp` and `name-thumb.webp` (128×106). If you replace a screenshot, replace every size of it, keeping the top of the page in frame, since each frame shows only the top of the screenshot. Images are cached by browsers for a day (`vercel.json`), so a replaced image can take up to a day to show for returning visitors.
+The font is Inter Tight (SIL Open Font License, see `assets/fonts`), self-hosted, so no requests go to Google Fonts.
 
 ## Local preview
 
