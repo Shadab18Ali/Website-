@@ -1,5 +1,5 @@
 /* Shadab Ali — site interactions (one deferred script for every page).
-   Header · mobile menu · reveals · parallax · cursor · project overlay · contact form */
+   Header · mobile menu · reveals · section index · cursor · project overlay · contact email */
 (() => {
   window.__site = 1;
   const root = document.documentElement;
@@ -9,21 +9,15 @@
 
   document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
 
-  /* ---------- Header: tucks away on scroll down, returns on scroll up ---------- */
+  /* ---------- Header: stays put and gets slimmer once the page scrolls ---------- */
   const header = document.querySelector('[data-header]');
-  let lastY = scrollY;
   let ticking = false;
   const onScroll = () => {
     ticking = false;
-    const y = scrollY;
-    header.classList.toggle('is-scrolled', y > 8);
-    if (root.classList.contains('menu-open')) return;
-    if (y > 320 && y > lastY + 6) header.classList.add('is-hidden');
-    else if (y < lastY - 6 || y <= 320) header.classList.remove('is-hidden');
-    lastY = y;
+    header.classList.toggle('is-scrolled', scrollY > 24);
   };
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
-  header.addEventListener('focusin', () => header.classList.remove('is-hidden'));
+  onScroll();
 
   /* ---------- Mobile menu ---------- */
   const toggle = document.querySelector('[data-menu-toggle]');
@@ -34,14 +28,13 @@
     toggle.textContent = open ? 'Close' : 'Menu';
     root.classList.toggle('menu-open', open);
     document.querySelectorAll('main, .site-footer').forEach(el => { el.inert = open; });
-    if (open) header.classList.remove('is-hidden');
   };
   toggle.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
   nav.addEventListener('click', event => { if (event.target.closest('a')) setMenu(false); });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') { setMenu(false); toggle.focus(); }
   });
-  matchMedia('(min-width: 761px)').addEventListener('change', event => { if (event.matches) setMenu(false); });
+  matchMedia('(min-width: 768px)').addEventListener('change', event => { if (event.matches) setMenu(false); });
 
   /* ---------- Reveals: fade, image clip and word-by-word text ---------- */
   const splitWords = element => {
@@ -78,7 +71,7 @@
           entry.target.classList.add('is-in');
           revealObserver.unobserve(entry.target);
         });
-      }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 })
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 })
     : null;
   const reveal = scope => {
     const targets = [...scope.querySelectorAll('[data-reveal]')];
@@ -91,45 +84,44 @@
   reveal(document);
   reduceMotion.addEventListener?.('change', () => document.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-in')));
 
-  /* ---------- Parallax on the editorial image sequence ---------- */
-  const parallaxItems = [...document.querySelectorAll('[data-parallax]')];
-  if (parallaxItems.length && motionOK() && 'IntersectionObserver' in window) {
-    const active = new Set();
-    let frame = 0;
+  /* ---------- Section index: "02 / Selected work" along the left edge (wide screens) ---------- */
+  const rail = document.querySelector('[data-index-rail]');
+  const indexed = [...document.querySelectorAll('[data-index]')];
+  if (rail && indexed.length && 'IntersectionObserver' in window) {
+    const text = rail.querySelector('.index-rail-text');
+    const visible = new Map();
+    const hero = document.querySelector('.hero');
     const update = () => {
-      frame = 0;
-      const vh = innerHeight;
-      active.forEach(item => {
-        const box = item.getBoundingClientRect();
-        const progress = (box.top + box.height / 2 - vh / 2) / vh;
-        const limit = box.height * 0.05;
-        const shift = Math.max(-limit, Math.min(limit, -progress * parseFloat(item.dataset.parallax) * vh));
-        item.style.setProperty('--py', `${shift.toFixed(1)}px`);
-      });
+      let current = null;
+      indexed.forEach(section => { if (visible.get(section)) current = section; });
+      const heroInView = hero && hero.getBoundingClientRect().bottom > innerHeight * 0.5;
+      const label = heroInView ? 'Scroll' : current?.dataset.index;
+      if (label) { text.textContent = label; rail.classList.add('is-visible'); }
+      else rail.classList.remove('is-visible');
     };
-    const request = () => { if (!frame) frame = requestAnimationFrame(update); };
+    // A section counts as current while it crosses the middle of the screen.
     const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => { entry.isIntersecting ? active.add(entry.target) : active.delete(entry.target); });
-      request();
-    }, { rootMargin: '15% 0px' });
-    parallaxItems.forEach(item => observer.observe(item));
-    addEventListener('scroll', request, { passive: true });
-    addEventListener('resize', request, { passive: true });
+      entries.forEach(entry => visible.set(entry.target, entry.isIntersecting));
+      update();
+    }, { rootMargin: '-50% 0px -50% 0px' });
+    indexed.forEach(section => observer.observe(section));
+    addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+    update();
   }
 
-  /* ---------- "View" cursor over project images (mouse only) ---------- */
+  /* ---------- "View project" cursor over project images (mouse only) ---------- */
   if (finePointer.matches && motionOK()) {
     const cursor = document.createElement('div');
     cursor.className = 'cursor';
     cursor.setAttribute('aria-hidden', 'true');
-    cursor.textContent = 'View';
+    cursor.innerHTML = '<span>View</span><span>Project ↗</span>';
     document.body.append(cursor);
-    let x = -200, y = -200, scale = 0, targetX = x, targetY = y, targetScale = 0, running = false;
+    let x = -300, y = -300, scale = 0, targetX = x, targetY = y, targetScale = 0, running = false;
     const loop = () => {
-      x += (targetX - x) * 0.22;
-      y += (targetY - y) * 0.22;
-      scale += (targetScale - scale) * 0.2;
-      cursor.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
+      x += (targetX - x) * 0.24;
+      y += (targetY - y) * 0.24;
+      scale += (targetScale - scale) * 0.22;
+      cursor.style.transform = `translate3d(${(x + 18).toFixed(1)}px, ${(y + 18).toFixed(1)}px, 0) scale(${scale.toFixed(3)})`;
       if (Math.abs(targetX - x) + Math.abs(targetY - y) + Math.abs(targetScale - scale) > 0.05) requestAnimationFrame(loop);
       else running = false;
     };
@@ -146,7 +138,7 @@
   }
 
   /* ---------- Project overlay ----------
-     "View project" links point at real project pages. With JS, the page's project
+     Project links point at real project pages. With JS, the page's project
      article is fetched and shown in a modal dialog; the URL updates so the back
      button closes it and the address can be shared. */
   const canDialog = typeof HTMLDialogElement === 'function' && 'showModal' in HTMLDialogElement.prototype;
@@ -172,7 +164,7 @@
     };
     const status = text => {
       const note = document.createElement('p');
-      note.className = 'dialog-status label';
+      note.className = 'dialog-status meta';
       note.setAttribute('role', 'status');
       note.textContent = text;
       dialog.replaceChildren(note);
@@ -198,7 +190,7 @@
     };
     const open = async (href, { from = null, mode = 'push' } = {}) => {
       const url = new URL(href, location.href);
-      if (from) returnFocus = from.closest('.project')?.querySelector('.view-link') || from;
+      if (from) returnFocus = from.closest('.exhibit')?.querySelector('[data-case-link]') || from;
       if (!dialog.open) {
         status('Loading project…');
         dialog.classList.remove('is-closing');
@@ -267,64 +259,17 @@
     document.addEventListener('focusin', prefetch);
   }
 
-  /* ---------- Services: pre-select the service on the contact form ---------- */
-  document.querySelectorAll('[data-service]').forEach(link => {
-    link.href = `contact.html?service=${encodeURIComponent(link.dataset.service)}#brief`;
-  });
-  const serviceSelect = document.querySelector('[name="service"]');
+  /* ---------- Contact: "Start a project" on a service fills in the project type ---------- */
+  const briefLink = document.querySelector('[data-brief-mail]');
   const requested = new URLSearchParams(location.search).get('service');
-  if (serviceSelect && requested) {
-    const option = [...serviceSelect.options].find(item => item.value && item.textContent.toLowerCase() === requested.toLowerCase());
-    if (option) serviceSelect.value = option.value;
-  }
-
-  /* ---------- Contact form ---------- */
-  const form = document.getElementById('inquiryForm');
-  const formStatus = document.getElementById('formStatus');
-  if (form && formStatus) {
-    const submit = form.querySelector('[type="submit"]');
-    const submitLabel = submit.innerHTML;
-    const localPreview = ['localhost', '127.0.0.1'].includes(location.hostname);
-    if (localPreview) {
-      submit.innerHTML = 'Prepare inquiry email <span aria-hidden="true">→</span>';
-      formStatus.textContent = 'Local preview: the live form sends through Vercel once the email settings are added. Here, the button prepares an email instead.';
+  if (briefLink && requested) {
+    const type = briefLink.dataset.types.split('|').find(item => item.toLowerCase() === requested.toLowerCase());
+    const query = briefLink.getAttribute('href').split('?')[1] || '';
+    const params = Object.fromEntries(query.split('&').map(pair => pair.split('=').map(decodeURIComponent)));
+    if (type && params.body) {
+      params.body = params.body.replace(/^Project type.*$/m, `Project type: ${type}`);
+      params.subject = `Project enquiry — ${type}`;
+      briefLink.href = `mailto:${briefLink.getAttribute('href').slice(7).split('?')[0]}?subject=${encodeURIComponent(params.subject)}&body=${encodeURIComponent(params.body)}`;
     }
-    form.addEventListener('submit', async event => {
-      event.preventDefault();
-      if (!form.reportValidity()) return;
-      formStatus.classList.remove('is-success', 'is-error');
-      const values = new FormData(form);
-      if (localPreview) {
-        const get = name => String(values.get(name) || '').trim();
-        const subject = `Website inquiry — ${get('service')} — ${get('name')}`;
-        const body = `Hi Shadab,\n\nI'd like to discuss a website project.\n\nName: ${get('name')}\nEmail: ${get('email')}\nProject type: ${get('service')}\nCurrent website: ${get('website') || 'Not provided'}\nBudget: ${get('budget') || 'Not specified'}\nTimeline: ${get('timeline') || 'Not specified'}\n\nProject details:\n${get('details')}\n\nThanks,\n${get('name')}`;
-        formStatus.textContent = 'Your email app should open now. Review the message and press Send there.';
-        location.href = `mailto:shadab18ali@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        return;
-      }
-      submit.disabled = true;
-      submit.textContent = 'Sending…';
-      formStatus.textContent = 'Sending your project request…';
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(values).toString(),
-        });
-        if (!response.ok) throw new Error(`Form submission failed (${response.status})`);
-        form.reset();
-        formStatus.textContent = 'Your request was sent. Thank you — I’ll reply by email.';
-        formStatus.classList.add('is-success');
-        location.href = 'thanks.html';
-      } catch (error) {
-        formStatus.textContent = 'The form could not send your request. Please email or message me on WhatsApp instead.';
-        formStatus.classList.add('is-error');
-        formStatus.focus();
-        console.error('Inquiry form submission failed:', error);
-      } finally {
-        submit.disabled = false;
-        submit.innerHTML = submitLabel;
-      }
-    });
   }
 })();
